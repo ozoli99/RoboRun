@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboRun.View", "RoboRun.View\RoboRun.View.csproj", "{09131DA9-70F5-4431-BE4F-594CC286ACB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09131DA9-70F5-4431-BE4F-594CC286ACB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09131DA9-70F5-4431-BE4F-594CC286ACB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09131DA9-70F5-4431-BE4F-594CC286ACB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09131DA9-70F5-4431-BE4F-594CC286ACB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97347905-1A63-48DA-B20A-4988F94B3538}
+	EndGlobalSection
+EndGlobal
