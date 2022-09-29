@@ -13,6 +13,9 @@ namespace RoboRun.View
 
         #region Constructor
 
+        /// <summary>
+        /// Instantiate GameForm.
+        /// </summary>
         public GameForm()
         {
             InitializeComponent();
@@ -22,9 +25,21 @@ namespace RoboRun.View
 
         #region Form event handler
 
+        /// <summary>
+        /// Event handler of loading GameForm.
+        /// </summary>
         private void GameForm_Load(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            // Instantiate persistence
+            _dataAccess = new RoboRunFileDataAccess();
+
+            // Create model
+            _model = new RoboRunModel();
+
+            // Create timer
+            _timer = new System.Windows.Forms.Timer();
+            _timer.Interval = 1000;
+            _timer.Tick += new EventHandler(Timer_Tick);
         }
 
         #endregion
@@ -62,6 +77,15 @@ namespace RoboRun.View
         }
 
         private void MenuGameBig_Click(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Timer event handler
+
+        private void Timer_Tick(object? sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
