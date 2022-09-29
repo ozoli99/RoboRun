@@ -35,5 +35,29 @@
         }
 
         #endregion
+
+        #region Public methods
+
+        public void NewGame()
+        {
+            _gameTable = new RoboRunTable();
+        }
+
+        public void Step(int x, int y)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadGame(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveGame(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
