@@ -1,3 +1,5 @@
+using RoboRun.Model;
+
 namespace RoboRun.View
 {
     public partial class GameForm : Form
@@ -34,7 +36,7 @@ namespace RoboRun.View
             _dataAccess = new RoboRunFileDataAccess();
 
             // Create model
-            _model = new RoboRunModel();
+            _model = new RoboRunModel(_dataAccess);
 
             // Create timer
             _timer = new System.Windows.Forms.Timer();

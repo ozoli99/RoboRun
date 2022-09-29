@@ -28,9 +28,10 @@
 
         #region Constructor
 
-        public RoboRunModel()
+        public RoboRunModel(IRoboRunDataAccess dataAccess)
         {
-
+            _dataAccess = dataAccess;
+            _gameTable = new RoboRunTable();
         }
 
         #endregion
