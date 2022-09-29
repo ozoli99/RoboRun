@@ -55,3 +55,16 @@ szerkezetének leírását (UML osztálydiagrammal), valamint a tesztesetek leí
 A dokumentáció ne tartalmazzon kódrészleteket, illetve képernyőképeket. A
 megjelenő diagramokat megfelelő szerkesztőeszköz segítségével kell előállítani.
 A dokumentációt elektronikusan, PDF formátumban kell leadni.
+
+## Elemzés
+- A játékot három pályamérettel játszhatjuk: (7 × 7), (11 × 11), (15 × 15). 
+A program indításkor (11 x 11)-es méretet állít be, és automatikusan új játékot indít.
+- A feladatot egyablakos asztali alkalmazásként Windows Forms grafikus felülettel valósítjuk meg.
+- Az ablakban elhelyezünk egy menüt a következő menüpontokkal: 
+File (Új játék, Játék betöltése, Játék mentése, Kilépés), Beállítások ((7 × 7), (11 × 11), (15 × 15)).
+Az ablak alján megjelenítünk egy státuszsort, amely a hátralévő időt jelzi.
+- A játéktáblát a beállításoknak megfelelő méretű nyomógombokból álló rács reprezentálja.
+A nyomógomb egérkattintás hatására lerak egy falat az adott területre. Falat a robot vagy egy már lent lévő fal
+pozíciójára nem lehet lerakni. Lent lévő fal pozíciójára később, esetleges ledőlés esetén sem lehet már új falat lerakni.
+- A játék automatikusan feldob egy dialógusablakot, amikor vége a játéknak (sikerült beterelni a robotot a pálya közepén
+található mágnes alá). Szintén dialógusablakkal végezzük el a mentést, illetve betöltést is, a fájlneveket a felhasználó adja meg.
