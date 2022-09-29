@@ -20,6 +20,12 @@
 
         #endregion
 
+        #region Events
+
+        public event EventHandler GameOver;
+
+        #endregion
+
         #region Constructor
 
         public RoboRunModel()
