@@ -2,12 +2,12 @@
 {
     public class RoboRunFileDataAccess : IRoboRunDataAccess
     {
-        public RoboRunTable Load(string path)
+        public Task<RoboRunTable> LoadAsync(string path)
         {
             throw new NotImplementedException();
         }
 
-        public void Save(string path, RoboRunTable gameTable, int gameTime)
+        public Task SaveAsync(string path, RoboRunTable gameTable, int gameTime)
         {
             throw new NotImplementedException();
         }
