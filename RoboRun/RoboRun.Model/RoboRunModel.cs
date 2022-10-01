@@ -34,6 +34,7 @@ namespace RoboRun.Model
         public RoboRunTable GameTable { get { return _gameTable; } }
         public int GameTime { get { return _gameTime; } }
         public bool IsGameOver { get { return GameTable.Robot.ReachedHome; } }
+        public GameTableSize GameTableSize { get { return _gameTableSize; } set { _gameTableSize = value; } }
 
         #endregion
 

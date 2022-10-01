@@ -172,10 +172,14 @@ namespace RoboRun.View
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Setup menus.
+        /// </summary>
         private void SetupMenus()
         {
-            // TODO: GameForm.SetupMenus
-            throw new NotImplementedException();
+            _menuGameSmall.Checked = (_model.GameTableSize == GameTableSize.Small);
+            _menuGameMedium.Checked = (_model.GameTableSize == GameTableSize.Medium);
+            _menuGameBig.Checked = (_model.GameTableSize == GameTableSize.Big);
         }
 
         #endregion
