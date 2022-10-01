@@ -13,6 +13,15 @@
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Get the size of the game table.
+        /// </summary>
+        public int Size { get { return _fieldLocks.GetLength(0); } }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -53,11 +62,16 @@
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Lock a field on the game table.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
         public void SetLock(int x, int y)
         {
-            if (x < 0 || x >= _fieldValues.GetLength(0))
+            if (x < 0 || x >= _fieldLocks.GetLength(0))
                 throw new ArgumentOutOfRangeException("x", "The X coordinate is out of range.");
-            if (y < 0 || y >= _fieldValues.GetLength(1))
+            if (y < 0 || y >= _fieldLocks.GetLength(1))
                 throw new ArgumentOutOfRangeException("y", "The Y coordinate is out of range.");
 
             _fieldLocks[x, y] = true;
