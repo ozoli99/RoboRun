@@ -32,17 +32,17 @@ namespace RoboRun.Model
         #region Properties
 
         public RoboRunTable GameTable { get { return _gameTable; } }
+        public GameTableSize GameTableSize { get { return _gameTableSize; } set { _gameTableSize = value; } }
         public int GameTime { get { return _gameTime; } }
         public bool IsGameWin { get { return GameTable.Robot.ReachedHome; } }
-        public GameTableSize GameTableSize { get { return _gameTableSize; } set { _gameTableSize = value; } }
 
         #endregion
 
         #region Events
 
         public event EventHandler<RoboRunEventArgs>? GameWin;
-        public event EventHandler<RoboRunEventArgs>? GameAdvanced;
         public event EventHandler<RoboRunEventArgs>? GameTimeAdvanced;
+        public event EventHandler? RobotMoved;
 
         #endregion
 
@@ -101,6 +101,7 @@ namespace RoboRun.Model
             GameTable.BuildWall(x, y);
             GameTable.SetLock(x, y);
 
+            // Maybe a wall building event?
             GameAdvanced?.Invoke(this, new RoboRunEventArgs(GameTime));
         }
 
@@ -110,6 +111,67 @@ namespace RoboRun.Model
                 return;
 
             _gameTime++;
+        }
+
+        public void MoveRobot()
+        {
+            if (GameTable.Robot.ReachedWall)
+            {
+                Array values = Enum.GetValues(typeof(Direction));
+                Random random = new Random();
+                GameTable.Robot.MovementDirection = (Direction)values.GetValue(random.Next(values.Length));
+            }
+            else
+            {
+                switch (GameTable.Robot.MovementDirection)
+                {
+                    case Direction.Up:
+                        if (GameTable.Robot.X - 1 < 0 || GameTable.HasWall(GameTable.Robot.X - 1, GameTable.Robot.Y))
+                        {
+                            GameTable.Robot.ReachedWall = true;
+                        }
+                        else
+                        {
+                            GameTable.Robot.ReachedWall = false;
+                            GameTable.Robot.X -= 1;
+                        }
+                        break;
+                    case Direction.Down:
+                        if (GameTable.Robot.X + 1 >= GameTable.Size || GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
+                        {
+                            GameTable.Robot.ReachedWall = true;
+                        }
+                        else
+                        {
+                            GameTable.Robot.ReachedWall = false;
+                            GameTable.Robot.X += 1;
+                        }
+                        break;
+                    case Direction.Left:
+                        if (GameTable.Robot.Y - 1 < 0 || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y - 1))
+                        {
+                            GameTable.Robot.ReachedWall = true;
+                        }
+                        else
+                        {
+                            GameTable.Robot.ReachedWall = false;
+                            GameTable.Robot.Y -= 1;
+                        }
+                        break;
+                    case Direction.Right:
+                        if (GameTable.Robot.Y + 1 >= GameTable.Size || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
+                        {
+                            GameTable.Robot.ReachedWall = true;
+                        }
+                        else
+                        {
+                            GameTable.Robot.ReachedWall = false;
+                            GameTable.Robot.Y += 1;
+                        }
+                        break;
+                }
+            }
+            RobotMoved?.Invoke(this, new EventArgs());
         }
 
         public async Task LoadGameAsync(string path)
