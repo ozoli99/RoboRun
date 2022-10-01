@@ -43,6 +43,16 @@ namespace RoboRun.View
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 1000;
             _timer.Tick += new EventHandler(Timer_Tick);
+
+            // Initialize gameTable and menus
+            GenerateGameTable();
+            SetupMenus();
+
+            // Start new game
+            _model.NewGame();
+            SetupGameTable();
+
+            _timer.Start();
         }
 
         #endregion
@@ -98,6 +108,25 @@ namespace RoboRun.View
         #region Timer event handler
 
         private void Timer_Tick(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Private meghods
+
+        private void GenerateGameTable()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetupGameTable()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetupMenus()
         {
             throw new NotImplementedException();
         }
