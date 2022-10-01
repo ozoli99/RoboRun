@@ -52,6 +52,10 @@ namespace RoboRun.View
             _robotTimer.Interval = 500;
             _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
 
+            // Setup window parameters
+            this.Width = (_model.GameTable.Size * 50) + 26;
+            this.Height = (_model.GameTable.Size * 50) + 110;
+
             // Initialize gameTable and menus
             GenerateGameTable();
             SetupMenus();
