@@ -6,7 +6,7 @@
         public int Y { get; set; }
         public bool ReachedHome { get; set; }
 
-        public Robot(int x, int y, bool reachedHome)
+        public Robot(int x, int y, bool reachedHome = false)
         {
             X = x;
             Y = y;

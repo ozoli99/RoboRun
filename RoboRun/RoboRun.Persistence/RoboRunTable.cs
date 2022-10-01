@@ -7,7 +7,8 @@
     {
         #region Private fields
 
-        private int[,] _fieldValues;
+        private Robot _robot;
+        private List<Wall> _walls;
         private bool[,] _fieldLocks;
 
         #endregion
@@ -28,7 +29,13 @@
             if (tableSize < 0)
                 throw new ArgumentOutOfRangeException("The table size is less than 0.", "tableSize");
 
-            _fieldValues = new int[tableSize, tableSize];
+            Random random = new Random();
+            int x, y;
+            x = random.Next(tableSize);
+            y = random.Next(tableSize);
+
+            _robot = new Robot(x, y);
+            _walls = new List<Wall>();
             _fieldLocks = new bool[tableSize, tableSize];
         }
 
