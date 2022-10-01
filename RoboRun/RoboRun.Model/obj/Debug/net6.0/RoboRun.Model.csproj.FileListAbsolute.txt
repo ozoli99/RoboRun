@@ -1,0 +1,15 @@
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\bin\Debug\net6.0\RoboRun.Model.deps.json
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\bin\Debug\net6.0\RoboRun.Model.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\bin\Debug\net6.0\RoboRun.Model.pdb
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\bin\Debug\net6.0\RoboRun.Persistence.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\bin\Debug\net6.0\RoboRun.Persistence.pdb
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.csproj.AssemblyReference.cache
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.GeneratedMSBuildEditorConfig.editorconfig
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.AssemblyInfoInputs.cache
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.AssemblyInfo.cs
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.csproj.CoreCompileInputs.cache
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.csproj.CopyComplete
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\refint\RoboRun.Model.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\RoboRun.Model.pdb
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Model\obj\Debug\net6.0\ref\RoboRun.Model.dll

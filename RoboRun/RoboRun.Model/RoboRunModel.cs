@@ -102,7 +102,7 @@ namespace RoboRun.Model
             GameTable.SetLock(x, y);
 
             // Maybe a wall building event?
-            GameAdvanced?.Invoke(this, new RoboRunEventArgs(GameTime));
+            //GameAdvanced?.Invoke(this, new RoboRunEventArgs(GameTime));
         }
 
         public void AdvanceTime()

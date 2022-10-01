@@ -85,6 +85,7 @@ namespace RoboRun.View
 
         private void Game_RobotMoved(object? sender, EventArgs e)
         {
+            // _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
 
         }
 
@@ -246,6 +247,7 @@ namespace RoboRun.View
                     _buttonGrid[i, j] = new Button();
                     _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
                     _buttonGrid[i, j].Size = new Size(50, 50);
+                    _buttonGrid[i, j].BackgroundImage = (Image)Resource.ResourceManager.GetObject("robot");
                     _buttonGrid[i, j].Enabled = false;
                     _buttonGrid[i, j].TabIndex = 100 + i * _model.GameTable.Size + j;
                     _buttonGrid[i, j].FlatStyle = FlatStyle.Flat;

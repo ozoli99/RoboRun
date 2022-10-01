@@ -50,8 +50,10 @@
             int x, y;
             x = random.Next(tableSize);
             y = random.Next(tableSize);
+            Array values = Enum.GetValues(typeof(Direction));
+            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
 
-            _robot = new Robot(x, y);
+            _robot = new Robot(x, y, randomDirection);
             _walls = new List<Wall>();
             _fieldLocks = new bool[tableSize, tableSize];
         }

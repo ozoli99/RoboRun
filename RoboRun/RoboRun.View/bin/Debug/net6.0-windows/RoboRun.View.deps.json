@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "RoboRun.View/1.0.0": {
+        "dependencies": {
+          "RoboRun.Model": "1.0.0",
+          "RoboRun.Persistence": "1.0.0"
+        },
+        "runtime": {
+          "RoboRun.View.dll": {}
+        }
+      },
+      "RoboRun.Model/1.0.0": {
+        "dependencies": {
+          "RoboRun.Persistence": "1.0.0"
+        },
+        "runtime": {
+          "RoboRun.Model.dll": {}
+        }
+      },
+      "RoboRun.Persistence/1.0.0": {
+        "runtime": {
+          "RoboRun.Persistence.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RoboRun.View/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RoboRun.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RoboRun.Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

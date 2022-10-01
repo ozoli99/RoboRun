@@ -1,0 +1,12 @@
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\bin\Debug\net6.0\RoboRun.Persistence.deps.json
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\bin\Debug\net6.0\RoboRun.Persistence.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\bin\Debug\net6.0\RoboRun.Persistence.pdb
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.csproj.AssemblyReference.cache
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.AssemblyInfoInputs.cache
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.AssemblyInfo.cs
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.csproj.CoreCompileInputs.cache
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\refint\RoboRun.Persistence.dll
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\RoboRun.Persistence.pdb
+E:\ELTE\V. Felev\Esemenyvezerelt alkalmazasok\Beadandok\RoboRun\RoboRun\RoboRun.Persistence\obj\Debug\net6.0\ref\RoboRun.Persistence.dll

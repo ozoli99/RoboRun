@@ -13,6 +13,7 @@
                     string[] numbers = line.Split(' ');
                     int tableSize = int.Parse(numbers[0]);
                     RoboRunTable gameTable = new RoboRunTable(tableSize);
+                    return gameTable;
                 }
             }
             catch

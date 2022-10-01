@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "RoboRun.Persistence/1.0.0": {
+        "runtime": {
+          "RoboRun.Persistence.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RoboRun.Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
