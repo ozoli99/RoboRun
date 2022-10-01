@@ -6,7 +6,7 @@
         public int Y { get; set; }
         public bool Collapsed { get; set; }
 
-        public Wall(int x, int y, bool collapsed)
+        public Wall(int x, int y, bool collapsed = false)
         {
             X = x;
             Y = y;

@@ -19,6 +19,7 @@ namespace RoboRun.Model
 
         public RoboRunTable GameTable { get { return _gameTable; } }
         public int GameTime { get { return _gameTime; } }
+        public bool IsGameOver { get { return GameTable.Robot.ReachedHome; } }
 
         #endregion
 
@@ -49,6 +50,15 @@ namespace RoboRun.Model
         {
             // TODO: RoboRunModel.Step
             throw new NotImplementedException();
+
+            if (IsGameOver)
+                return;
+            if (GameTable.IsLocked(x, y))
+                return;
+            if (GameTable.Robot.X == x && GameTable.Robot.Y == y)
+                return;
+
+            GameTable.
         }
 
         public void LoadGame(string path)

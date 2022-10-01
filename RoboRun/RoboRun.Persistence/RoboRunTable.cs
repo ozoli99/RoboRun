@@ -72,6 +72,17 @@
             throw new NotImplementedException();
         }
 
+        public void BuildWall(int x, int y)
+        {
+            if (x < 0 || x >= _fieldLocks.GetLength(0))
+                throw new ArgumentOutOfRangeException("x", "The X coordinate is out of range.");
+            if (y < 0 || y >= _fieldLocks.GetLength(1))
+                throw new ArgumentOutOfRangeException("y", "The Y coordinate is out of range.");
+
+            Wall newWall = new Wall(x, y);
+            _walls.Add(newWall);
+        }
+
         /// <summary>
         /// Lock a field on the game table.
         /// </summary>
