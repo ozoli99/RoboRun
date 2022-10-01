@@ -79,7 +79,7 @@
             // 
             this._menuFileNewGame.Name = "_menuFileNewGame";
             this._menuFileNewGame.Size = new System.Drawing.Size(200, 26);
-            this._menuFileNewGame.Text = "Új játék";
+            this._menuFileNewGame.Text = "New game";
             this._menuFileNewGame.Click += new System.EventHandler(this.MenuFileNewGame_Click);
             // 
             // toolStripMenuItem1
@@ -91,14 +91,14 @@
             // 
             this._menuFileLoadGame.Name = "_menuFileLoadGame";
             this._menuFileLoadGame.Size = new System.Drawing.Size(200, 26);
-            this._menuFileLoadGame.Text = "Játék betöltése...";
+            this._menuFileLoadGame.Text = "Load game...";
             this._menuFileLoadGame.Click += new System.EventHandler(this.MenuFileLoadGame_Click);
             // 
             // _menuFileSaveGame
             // 
             this._menuFileSaveGame.Name = "_menuFileSaveGame";
             this._menuFileSaveGame.Size = new System.Drawing.Size(200, 26);
-            this._menuFileSaveGame.Text = "Játék mentése...";
+            this._menuFileSaveGame.Text = "Save game...";
             this._menuFileSaveGame.Click += new System.EventHandler(this.MenuFileSaveGame_Click);
             // 
             // toolStripMenuItem2
@@ -110,7 +110,7 @@
             // 
             this._menuFileExitGame.Name = "_menuFileExitGame";
             this._menuFileExitGame.Size = new System.Drawing.Size(200, 26);
-            this._menuFileExitGame.Text = "Kilépés";
+            this._menuFileExitGame.Text = "Exit";
             this._menuFileExitGame.Click += new System.EventHandler(this.MenuFileExitGame_Click);
             // 
             // _menuSettings
@@ -121,7 +121,7 @@
             this._menuGameBig});
             this._menuSettings.Name = "_menuSettings";
             this._menuSettings.Size = new System.Drawing.Size(95, 24);
-            this._menuSettings.Text = "Beállítások";
+            this._menuSettings.Text = "Settings";
             // 
             // _menuGameSmall
             // 
@@ -146,13 +146,13 @@
             // 
             // _openFileDialog
             // 
-            this._openFileDialog.Filter = "RoboRun tábla (*.rrt)|*.rrt";
-            this._openFileDialog.Title = "RoboRun játék betöltése";
+            this._openFileDialog.Filter = "RoboRun table (*.rrt)|*.rrt";
+            this._openFileDialog.Title = "RoboRun load game";
             // 
             // _saveFileDialog
             // 
-            this._saveFileDialog.Filter = "RoboRun tábla (*.rrt)|*.rrt";
-            this._saveFileDialog.Title = "RoboRun játék mentése";
+            this._saveFileDialog.Filter = "RoboRun table (*.rrt)|*.rrt";
+            this._saveFileDialog.Title = "RoboRun save game";
             // 
             // _statusStrip
             // 
@@ -171,7 +171,7 @@
             // 
             this._toolLabel1.Name = "_toolLabel1";
             this._toolLabel1.Size = new System.Drawing.Size(84, 24);
-            this._toolLabel1.Text = "Lépésszám:";
+            this._toolLabel1.Text = "Game Time:";
             // 
             // _toolLabelGameTime
             // 
@@ -191,7 +191,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.MaximizeBox = false;
             this.Name = "GameForm";
-            this.Text = "RoboRun játék";
+            this.Text = "RoboRun";
             this.Load += new System.EventHandler(this.GameForm_Load);
             this._menuStrip.ResumeLayout(false);
             this._menuStrip.PerformLayout();

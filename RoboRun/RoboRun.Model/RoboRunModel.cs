@@ -56,7 +56,7 @@ namespace RoboRun.Model
         {
             _dataAccess = dataAccess;
             _gameTableSize = GameTableSize.Medium;
-            _gameTable = new RoboRunTable();
+            _gameTable = new RoboRunTable(GameTableSizeMedium);
         }
 
         #endregion

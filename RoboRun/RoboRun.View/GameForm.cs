@@ -52,20 +52,7 @@ namespace RoboRun.View
             _robotTimer.Interval = 500;
             _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
 
-            // Setup window parameters
-            this.Width = (_model.GameTable.Size * 50) + 26;
-            this.Height = (_model.GameTable.Size * 50) + 110;
-
-            // Initialize gameTable and menus
-            GenerateGameTable();
-            SetupMenus();
-
-            // Start new game
-            _model.NewGame();
-            SetupGameTable();
-
-            _timer.Start();
-            _robotTimer.Start();
+            NewGame();
         }
 
         #endregion
@@ -208,16 +195,19 @@ namespace RoboRun.View
         private void MenuGameSmall_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Small;
+            NewGame();
         }
 
         private void MenuGameMedium_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Medium;
+            NewGame();
         }
 
         private void MenuGameBig_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Big;
+            NewGame();
         }
 
         #endregion
@@ -237,6 +227,27 @@ namespace RoboRun.View
         #endregion
 
         #region Private meghods
+
+        /// <summary>
+        /// Start a new game.
+        /// </summary>
+        private void NewGame()
+        {
+            // Start new game
+            _model.NewGame();
+
+            // Initialize gameTable and menus
+            GenerateGameTable();
+            SetupGameTable();
+            SetupMenus();
+
+            // Setup window parameters
+            this.Width = (_model.GameTable.Size * 50) + 26;
+            this.Height = (_model.GameTable.Size * 50) + 110;
+
+            _timer.Start();
+            _robotTimer.Start();
+        }
 
         /// <summary>
         /// Generate new game table.
