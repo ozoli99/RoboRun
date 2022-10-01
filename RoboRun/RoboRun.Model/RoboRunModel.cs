@@ -3,14 +3,28 @@
 namespace RoboRun.Model
 {
     /// <summary>
+    /// Enum type of game table size.
+    /// </summary>
+    public enum GameTableSize { Small, Medium, Big }
+
+    /// <summary>
     /// Type of RoboRun game.
     /// </summary>
     public class RoboRunModel
     {
+        #region Difficulty constants
+
+        private const int GameTableSizeSmall = 7;
+        private const int GameTableSizeMedium = 11;
+        private const int GameTableSizeBig = 15;
+
+        #endregion
+
         #region Private fields
 
         private IRoboRunDataAccess _dataAccess; // persistence
         private RoboRunTable _gameTable;
+        private GameTableSize _gameTableSize;
         private int _gameTime;
 
         #endregion
@@ -39,6 +53,7 @@ namespace RoboRun.Model
         public RoboRunModel(IRoboRunDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
+            _gameTableSize = GameTableSize.Medium;
             _gameTable = new RoboRunTable();
         }
 
@@ -51,7 +66,20 @@ namespace RoboRun.Model
         /// </summary>
         public void NewGame()
         {
-            _gameTable = new RoboRunTable();
+            _gameTime = 0;
+
+            switch (_gameTableSize)
+            {
+                case GameTableSize.Small:
+                    _gameTable = new RoboRunTable(GameTableSizeSmall);
+                    break;
+                case GameTableSize.Medium:
+                    _gameTable = new RoboRunTable(GameTableSizeMedium);
+                    break;
+                case GameTableSize.Big:
+                    _gameTable = new RoboRunTable(GameTableSizeBig);
+                    break;
+            }
         }
 
         /// <summary>
