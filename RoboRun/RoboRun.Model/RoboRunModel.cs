@@ -32,6 +32,10 @@ namespace RoboRun.Model
 
         #region Constructor
 
+        /// <summary>
+        /// Instantiate RoboRunModel.
+        /// </summary>
+        /// <param name="dataAccess">Persistence.</param>
         public RoboRunModel(IRoboRunDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
@@ -42,11 +46,19 @@ namespace RoboRun.Model
 
         #region Public methods
 
+        /// <summary>
+        /// Start new game.
+        /// </summary>
         public void NewGame()
         {
             _gameTable = new RoboRunTable();
         }
 
+        /// <summary>
+        /// Execute step on game table.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
         public void Step(int x, int y)
         {
             if (IsGameOver)
