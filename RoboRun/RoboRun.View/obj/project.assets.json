@@ -11,6 +11,16 @@
         "runtime": {
           "bin/placeholder/RoboRun.Model.dll": {}
         }
+      },
+      "RoboRun.Persistence/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/RoboRun.Persistence.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RoboRun.Persistence.dll": {}
+        }
       }
     }
   },
@@ -19,11 +29,17 @@
       "type": "project",
       "path": "../RoboRun.Model/RoboRun.Model.csproj",
       "msbuildProject": "../RoboRun.Model/RoboRun.Model.csproj"
+    },
+    "RoboRun.Persistence/1.0.0": {
+      "type": "project",
+      "path": "../RoboRun.Persistence/RoboRun.Persistence.csproj",
+      "msbuildProject": "../RoboRun.Persistence/RoboRun.Persistence.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "RoboRun.Model >= 1.0.0"
+      "RoboRun.Model >= 1.0.0",
+      "RoboRun.Persistence >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -62,6 +78,9 @@
           "projectReferences": {
             "E:\\ELTE\\V. Felev\\Esemenyvezerelt alkalmazasok\\Beadandok\\RoboRun\\RoboRun\\RoboRun.Model\\RoboRun.Model.csproj": {
               "projectPath": "E:\\ELTE\\V. Felev\\Esemenyvezerelt alkalmazasok\\Beadandok\\RoboRun\\RoboRun\\RoboRun.Model\\RoboRun.Model.csproj"
+            },
+            "E:\\ELTE\\V. Felev\\Esemenyvezerelt alkalmazasok\\Beadandok\\RoboRun\\RoboRun\\RoboRun.Persistence\\RoboRun.Persistence.csproj": {
+              "projectPath": "E:\\ELTE\\V. Felev\\Esemenyvezerelt alkalmazasok\\Beadandok\\RoboRun\\RoboRun\\RoboRun.Persistence\\RoboRun.Persistence.csproj"
             }
           }
         }

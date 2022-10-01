@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RoboRun.Model\RoboRun.Model.csproj" />
+    <ProjectReference Include="..\RoboRun.Persistence\RoboRun.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
