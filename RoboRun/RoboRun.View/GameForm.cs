@@ -89,26 +89,82 @@ namespace RoboRun.View
 
         private void MenuFileNewGame_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuFileNewGame_Click
-            throw new NotImplementedException();
+            _menuFileSaveGame.Enabled = true;
+
+            _model.NewGame();
+            SetupGameTable();
+            SetupMenus();
+
+            _timer.Start();
         }
 
-        private void MenuFileLoadGame_Click(object? sender, EventArgs e)
+        private async void MenuFileLoadGame_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuFileLoadGame_Click
-            throw new NotImplementedException();
+            bool restartTimer = _timer.Enabled;
+            _timer.Stop();
+
+            if (_openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    await _model.LoadGameAsync(_openFileDialog.FileName);
+                    _menuFileSaveGame.Enabled = true;
+                }
+                catch (RoboRunDataException)
+                {
+                    MessageBox.Show("Error occurred during load!" + Environment.NewLine + "Wrong path or file format.", "RoboRun Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    _model.NewGame();
+                    _menuFileSaveGame.Enabled = true;
+                }
+
+                SetupGameTable();
+            }
+
+            if (restartTimer)
+                _timer.Start();
         }
 
-        private void MenuFileSaveGame_Click(object? sender, EventArgs e)
+        private async void MenuFileSaveGame_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuFileSaveGame_Click
-            throw new NotImplementedException();
+            bool restartTimer = _timer.Enabled;
+            _timer.Stop();
+
+            if (_saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    await _model.SaveGameAsync(_saveFileDialog.FileName);
+                }
+                catch (RoboRunDataException)
+                {
+                    MessageBox.Show("Error occurred during save!" + Environment.NewLine + "Wrong path or directory has no writing access.", "RoboRun Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            if (restartTimer)
+                _timer.Start();
         }
 
+        /// <summary>
+        /// Event handler of exit the game.
+        /// </summary>
         private void MenuFileExitGame_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuFileExitGame_Click
-            throw new NotImplementedException();
+            bool restartTimer = _timer.Enabled;
+            _timer.Stop();
+
+            if (MessageBox.Show("Are you sure you want to quit?", "RoboRun", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Close();
+            }
+            else
+            {
+                if (restartTimer)
+                {
+                    _timer.Start();
+                }
+            }
         }
 
         private void MenuGameSmall_Click(object? sender, EventArgs e)
