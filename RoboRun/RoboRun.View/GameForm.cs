@@ -38,7 +38,7 @@ namespace RoboRun.View
 
             // Create model
             _model = new RoboRunModel(_dataAccess);
-            _model.GameOver += new EventHandler(Game_GameOver);
+            _model.GameWin += new EventHandler(Game_GameWin);
 
             // Create timer
             _timer = new System.Windows.Forms.Timer();
@@ -60,10 +60,18 @@ namespace RoboRun.View
 
         #region Game event handlers
 
-        private void Game_GameOver(object? sender, EventArgs e)
+        private void Game_GameWin(object? sender, RoboRunEventArgs e)
         {
-            // TODO: GameForm.Game_GameOver
-            throw new NotImplementedException();
+            _timer.Stop();
+
+            foreach (Button button in _buttonGrid)
+            {
+                button.Enabled = false;
+            }
+
+            _menuFileSaveGame.Enabled = false;
+
+            MessageBox.Show("You Won!" + Environment.NewLine + "Time: " + TimeSpan.FromSeconds(e.ElapsedTime).ToString("g"), "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         #endregion

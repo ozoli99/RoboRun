@@ -33,14 +33,14 @@ namespace RoboRun.Model
 
         public RoboRunTable GameTable { get { return _gameTable; } }
         public int GameTime { get { return _gameTime; } }
-        public bool IsGameOver { get { return GameTable.Robot.ReachedHome; } }
+        public bool IsGameWin { get { return GameTable.Robot.ReachedHome; } }
         public GameTableSize GameTableSize { get { return _gameTableSize; } set { _gameTableSize = value; } }
 
         #endregion
 
         #region Events
 
-        public event EventHandler? GameOver;
+        public event EventHandler<RoboRunEventArgs> GameWin;
         public event EventHandler? GameAdvanced;
 
         #endregion
@@ -90,7 +90,7 @@ namespace RoboRun.Model
         /// <param name="y">Vertical coordinate.</param>
         public void Step(int x, int y)
         {
-            if (IsGameOver)
+            if (IsGameWin)
                 return;
             if (GameTable.IsLocked(x, y))
                 return;
