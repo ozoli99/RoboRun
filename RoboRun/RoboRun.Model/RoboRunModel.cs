@@ -102,16 +102,20 @@ namespace RoboRun.Model
             GameAdvanced?.Invoke(this, new EventArgs());
         }
 
-        public void LoadGame(string path)
+        public async Task LoadGameAsync(string path)
         {
-            // TODO: RoboRunModel.LoadGame
-            throw new NotImplementedException();
+            if (_dataAccess == null)
+                throw new InvalidOperationException("No data access is provided.");
+
+            _gameTable = await _dataAccess.LoadAsync(path);
         }
 
-        public void SaveGame(string path)
+        public async Task SaveGameAsync(string path)
         {
-            // TODO: RoboRunModel.SaveGame
-            throw new NotImplementedException();
+            if (_dataAccess == null)
+                throw new InvalidOperationException("No data access is provided.");
+
+            await _dataAccess.SaveAsync(path, _gameTable, _gameTime);
         }
 
         #endregion
