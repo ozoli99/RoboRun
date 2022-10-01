@@ -72,6 +72,11 @@
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Build a wall on the game table.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
         public void BuildWall(int x, int y)
         {
             if (x < 0 || x >= _fieldLocks.GetLength(0))

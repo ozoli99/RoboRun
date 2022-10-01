@@ -25,7 +25,8 @@ namespace RoboRun.Model
 
         #region Events
 
-        public event EventHandler GameOver;
+        public event EventHandler? GameOver;
+        public event EventHandler? GameAdvanced;
 
         #endregion
 
@@ -48,9 +49,6 @@ namespace RoboRun.Model
 
         public void Step(int x, int y)
         {
-            // TODO: RoboRunModel.Step
-            throw new NotImplementedException();
-
             if (IsGameOver)
                 return;
             if (GameTable.IsLocked(x, y))
@@ -58,7 +56,10 @@ namespace RoboRun.Model
             if (GameTable.Robot.X == x && GameTable.Robot.Y == y)
                 return;
 
-            GameTable.
+            GameTable.BuildWall(x, y);
+            GameTable.SetLock(x, y);
+
+            GameAdvanced?.Invoke(this, new EventArgs());
         }
 
         public void LoadGame(string path)
