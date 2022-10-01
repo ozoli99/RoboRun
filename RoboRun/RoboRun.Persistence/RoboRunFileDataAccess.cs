@@ -25,7 +25,7 @@
         public Task SaveAsync(string path, RoboRunTable gameTable, int gameTime)
         {
             // TODO: RoboRunFileDataAccess.SaveAsync
-            throw new NotImplementedException();
+            return;
         }
     }
 }

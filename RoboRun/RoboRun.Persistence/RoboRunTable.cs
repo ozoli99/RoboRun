@@ -62,16 +62,33 @@
 
         #region Public methods
 
+        /// <summary>
+        /// Get the given field has wall on it.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
+        /// <returns>The given field has wall on it.</returns>
         public bool HasWall(int x, int y)
         {
-            // TODO: RoboRunTable.HasWall
-            throw new NotImplementedException();
+            foreach (Wall wall in _walls)
+            {
+                if (wall.X == x && wall.Y == y)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
+        /// <summary>
+        /// Get that the given field is locked.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
+        /// <returns>The given field is locked.</returns>
         public bool IsLocked(int x, int y)
         {
-            // TODO: RoboRunTable.IsLocked
-            throw new NotImplementedException();
+            return _fieldLocks[x, y];
         }
 
         /// <summary>
