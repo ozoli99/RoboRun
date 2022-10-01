@@ -119,7 +119,7 @@ namespace RoboRun.View
 
         private void GenerateGameTable()
         {
-            throw new NotImplementedException();
+            _buttonGrid = new Button[_model.GameTable.Size, _model.GameTable.Size];
         }
 
         private void SetupGameTable()

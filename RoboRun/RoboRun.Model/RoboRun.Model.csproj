@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RoboRun.Persistence\RoboRun.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

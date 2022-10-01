@@ -1,4 +1,6 @@
-﻿namespace RoboRun.Model
+﻿using RoboRun.Persistence;
+
+namespace RoboRun.Model
 {
     /// <summary>
     /// Type of RoboRun game.

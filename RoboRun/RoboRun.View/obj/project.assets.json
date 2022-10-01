@@ -5,6 +5,9 @@
       "RoboRun.Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "RoboRun.Persistence": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/RoboRun.Model.dll": {}
         },

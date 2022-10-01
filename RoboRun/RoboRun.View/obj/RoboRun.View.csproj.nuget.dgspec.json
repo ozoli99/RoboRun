@@ -32,7 +32,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\ELTE\\V. Felev\\Esemenyvezerelt alkalmazasok\\Beadandok\\RoboRun\\RoboRun\\RoboRun.Persistence\\RoboRun.Persistence.csproj": {
+                "projectPath": "E:\\ELTE\\V. Felev\\Esemenyvezerelt alkalmazasok\\Beadandok\\RoboRun\\RoboRun\\RoboRun.Persistence\\RoboRun.Persistence.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
