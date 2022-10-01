@@ -60,6 +60,9 @@ namespace RoboRun.View
 
         #region Game event handlers
 
+        /// <summary>
+        /// Event handler of game win.
+        /// </summary>
         private void Game_GameWin(object? sender, RoboRunEventArgs e)
         {
             _timer.Stop();
@@ -75,11 +78,17 @@ namespace RoboRun.View
             MessageBox.Show("You Won!" + Environment.NewLine + "Time: " + TimeSpan.FromSeconds(e.ElapsedTime).ToString("g"), "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
+        /// <summary>
+        /// Event handler of game time advance.
+        /// </summary>
         private void Game_GameTimeAdvanced(object? sender, RoboRunEventArgs e)
         {
             _toolLabelGameTime.Text = TimeSpan.FromSeconds(e.ElapsedTime).ToString("g");
         }
 
+        /// <summary>
+        /// Event handler of robot movement.
+        /// </summary>
         private void Game_RobotMoved(object? sender, EventArgs e)
         {
             // _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
@@ -107,6 +116,9 @@ namespace RoboRun.View
 
         #region Menu event handlers
 
+        /// <summary>
+        /// Event handler of starting new game in File menu.
+        /// </summary>
         private void MenuFileNewGame_Click(object? sender, EventArgs e)
         {
             _menuFileSaveGame.Enabled = true;
@@ -119,6 +131,9 @@ namespace RoboRun.View
             _robotTimer.Start();
         }
 
+        /// <summary>
+        /// Event handler of loading game in File menu.
+        /// </summary>
         private async void MenuFileLoadGame_Click(object? sender, EventArgs e)
         {
             bool restartTimer = _timer.Enabled;
@@ -150,6 +165,9 @@ namespace RoboRun.View
             }
         }
 
+        /// <summary>
+        /// Event handler of saving game in File menu.
+        /// </summary>
         private async void MenuFileSaveGame_Click(object? sender, EventArgs e)
         {
             bool restartTimer = _timer.Enabled;
@@ -198,18 +216,27 @@ namespace RoboRun.View
             }
         }
 
+        /// <summary>
+        /// Event handler of changing game table size to small in Settings menu.
+        /// </summary>
         private void MenuGameSmall_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Small;
             NewGame();
         }
 
+        /// <summary>
+        /// Event handler of changing game table size to medium in Settings menu.
+        /// </summary>
         private void MenuGameMedium_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Medium;
             NewGame();
         }
 
+        /// <summary>
+        /// Event handler of changing game table size to big in Settings menu.
+        /// </summary>
         private void MenuGameBig_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Big;
@@ -220,11 +247,17 @@ namespace RoboRun.View
 
         #region Timer event handler
 
+        /// <summary>
+        /// Event handler of timer ticking.
+        /// </summary>
         private void Timer_Tick(object? sender, EventArgs e)
         {
             _model.AdvanceTime();
         }
 
+        /// <summary>
+        /// Event handler of timer ticking responsible for robot movement.
+        /// </summary>
         private void RobotTimer_Tick(object? sender, EventArgs e)
         {
             _model.MoveRobot();
