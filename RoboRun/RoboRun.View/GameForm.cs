@@ -67,6 +67,15 @@ namespace RoboRun.View
 
         #endregion
 
+        #region Grid event handler
+
+        private void ButtonGrid_MouseClick(object? sender, MouseEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Menu event handlers
 
         private void MenuFileNewGame_Click(object? sender, EventArgs e)
@@ -117,9 +126,27 @@ namespace RoboRun.View
 
         #region Private meghods
 
+        /// <summary>
+        /// Generate new game table.
+        /// </summary>
         private void GenerateGameTable()
         {
             _buttonGrid = new Button[_model.GameTable.Size, _model.GameTable.Size];
+            for (int i = 0; i < _model.GameTable.Size; i++)
+            {
+                for (int j = 0; j < _model.GameTable.Size; j++)
+                {
+                    _buttonGrid[i, j] = new Button();
+                    _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
+                    _buttonGrid[i, j].Size = new Size(50, 50);
+                    _buttonGrid[i, j].Enabled = false;
+                    _buttonGrid[i, j].TabIndex = 100 + i * _model.GameTable.Size + j;
+                    _buttonGrid[i, j].FlatStyle = FlatStyle.Flat;
+                    _buttonGrid[i, j].MouseClick += new MouseEventHandler(ButtonGrid_MouseClick);
+
+                    Controls.Add(_buttonGrid[i, j]);
+                }
+            }
         }
 
         private void SetupGameTable()
