@@ -40,6 +40,7 @@ namespace RoboRun.View
             // Create model
             _model = new RoboRunModel(_dataAccess);
             _model.GameWin += new EventHandler<RoboRunEventArgs>(Game_GameWin);
+            _model.GameTimeAdvanced += new EventHandler<RoboRunEventArgs>(Game_GameTimeAdvanced);
             _model.RobotMoved += new EventHandler(Game_RobotMoved);
 
             // Create timer for game time
@@ -72,6 +73,11 @@ namespace RoboRun.View
             _menuFileSaveGame.Enabled = false;
 
             MessageBox.Show("You Won!" + Environment.NewLine + "Time: " + TimeSpan.FromSeconds(e.ElapsedTime).ToString("g"), "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        private void Game_GameTimeAdvanced(object? sender, RoboRunEventArgs e)
+        {
+            _toolLabelGameTime.Text = TimeSpan.FromSeconds(e.ElapsedTime).ToString("g");
         }
 
         private void Game_RobotMoved(object? sender, EventArgs e)

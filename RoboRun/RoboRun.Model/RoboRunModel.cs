@@ -111,6 +111,7 @@ namespace RoboRun.Model
                 return;
 
             _gameTime++;
+            GameTimeAdvanced?.Invoke(this, new RoboRunEventArgs(_gameTime));
         }
 
         public void MoveRobot()
