@@ -92,6 +92,17 @@
         }
 
         /// <summary>
+        /// Get that the robot is on the given field.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
+        /// <returns>The robot is on the given field.</returns>
+        public bool IsRobot(int x, int y)
+        {
+            return (_robot.X == x && _robot.Y == y);
+        }
+
+        /// <summary>
         /// Build a wall on the game table.
         /// </summary>
         /// <param name="x">Horizontal coordinate.</param>

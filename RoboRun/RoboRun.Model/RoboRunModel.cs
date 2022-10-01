@@ -118,9 +118,7 @@ namespace RoboRun.Model
         {
             if (GameTable.Robot.ReachedWall)
             {
-                Array values = Enum.GetValues(typeof(Direction));
-                Random random = new Random();
-                GameTable.Robot.MovementDirection = (Direction)values.GetValue(random.Next(values.Length));
+                GenerateRandomDirection();
             }
             else
             {
@@ -130,6 +128,7 @@ namespace RoboRun.Model
                         if (GameTable.Robot.X - 1 < 0 || GameTable.HasWall(GameTable.Robot.X - 1, GameTable.Robot.Y))
                         {
                             GameTable.Robot.ReachedWall = true;
+                            GenerateRandomDirection();
                         }
                         else
                         {
@@ -138,9 +137,10 @@ namespace RoboRun.Model
                         }
                         break;
                     case Direction.Down:
-                        if (GameTable.Robot.X + 1 >= GameTable.Size || GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
+                        if (GameTable.Robot.X >= GameTable.Size - 1 || GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
                         {
                             GameTable.Robot.ReachedWall = true;
+                            GenerateRandomDirection();
                         }
                         else
                         {
@@ -152,6 +152,7 @@ namespace RoboRun.Model
                         if (GameTable.Robot.Y - 1 < 0 || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y - 1))
                         {
                             GameTable.Robot.ReachedWall = true;
+                            GenerateRandomDirection();
                         }
                         else
                         {
@@ -160,9 +161,10 @@ namespace RoboRun.Model
                         }
                         break;
                     case Direction.Right:
-                        if (GameTable.Robot.Y + 1 >= GameTable.Size || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
+                        if (GameTable.Robot.Y >= GameTable.Size - 1 || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
                         {
                             GameTable.Robot.ReachedWall = true;
+                            GenerateRandomDirection();
                         }
                         else
                         {
@@ -189,6 +191,18 @@ namespace RoboRun.Model
                 throw new InvalidOperationException("No data access is provided.");
 
             await _dataAccess.SaveAsync(path, _gameTable, _gameTime);
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void GenerateRandomDirection()
+        {
+            Array values = Enum.GetValues(typeof(Direction));
+            Random random = new Random();
+            GameTable.Robot.MovementDirection = (Direction)values.GetValue(random.Next(values.Length));
+            GameTable.Robot.ReachedWall = false;
         }
 
         #endregion

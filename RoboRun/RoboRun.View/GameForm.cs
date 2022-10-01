@@ -91,8 +91,8 @@ namespace RoboRun.View
         /// </summary>
         private void Game_RobotMoved(object? sender, EventArgs e)
         {
-            // _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
-
+            //_buttonGrid[i, j].BackgroundImage = (Image)Resource.ResourceManager.GetObject("robot");
+            SetupGameTable();
         }
 
         #endregion
@@ -301,7 +301,7 @@ namespace RoboRun.View
                     _buttonGrid[i, j] = new Button();
                     _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
                     _buttonGrid[i, j].Size = new Size(50, 50);
-                    _buttonGrid[i, j].BackgroundImage = (Image)Resource.ResourceManager.GetObject("robot");
+                    //_buttonGrid[i, j].BackgroundImage = (Image)Resource.ResourceManager.GetObject("robot");
                     _buttonGrid[i, j].Enabled = false;
                     _buttonGrid[i, j].TabIndex = 100 + i * _model.GameTable.Size + j;
                     _buttonGrid[i, j].FlatStyle = FlatStyle.Flat;
@@ -321,32 +321,30 @@ namespace RoboRun.View
             {
                 for (int j = 0; j < _buttonGrid.GetLength(1); j++)
                 {
-                    if (_model.GameTable.IsLocked(i, j))
+                    if (_model.GameTable.IsRobot(i, j))
                     {
                         _buttonGrid[i, j].Enabled = false;
-                        _buttonGrid[i, j].BackColor = Color.Gray;
+                        _buttonGrid[i, j].BackColor = Color.Black;
                     }
                     else
                     {
-                        _buttonGrid[i, j].Enabled = true;
-                        _buttonGrid[i, j].BackColor = Color.White;
-                    }
-
-                    if (_model.GameTable.HasWall(i, j))
-                    {
-                        _buttonGrid[i, j].BackColor = Color.Yellow;
-                    }
-                    else
-                    {
-                        if (_model.GameTable.IsLocked(i, j))
+                        if (_model.GameTable.HasWall(i, j))
                         {
                             _buttonGrid[i, j].Enabled = false;
-                            _buttonGrid[i, j].BackColor = Color.Gray;
+                            _buttonGrid[i, j].BackColor = Color.Yellow;
                         }
                         else
                         {
-                            _buttonGrid[i, j].Enabled = true;
-                            _buttonGrid[i, j].BackColor = Color.White;
+                            if (_model.GameTable.IsLocked(i, j))
+                            {
+                                _buttonGrid[i, j].Enabled = false;
+                                _buttonGrid[i, j].BackColor = Color.Gray;
+                            }
+                            else
+                            {
+                                _buttonGrid[i, j].Enabled = true;
+                                _buttonGrid[i, j].BackColor = Color.White;
+                            }
                         }
                     }
                 }
