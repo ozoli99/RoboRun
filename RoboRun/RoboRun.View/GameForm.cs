@@ -37,11 +37,21 @@ namespace RoboRun.View
 
             // Create model
             _model = new RoboRunModel(_dataAccess);
+            _model.GameOver += new EventHandler(Game_GameOver);
 
             // Create timer
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 1000;
             _timer.Tick += new EventHandler(Timer_Tick);
+        }
+
+        #endregion
+
+        #region Game event handlers
+
+        private void Game_GameOver(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
