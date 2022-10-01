@@ -19,6 +19,14 @@
         /// Get the size of the game table.
         /// </summary>
         public int Size { get { return _fieldLocks.GetLength(0); } }
+        /// <summary>
+        /// Get robot.
+        /// </summary>
+        public Robot Robot { get { return _robot; } }
+        /// <summary>
+        /// Get walls.
+        /// </summary>
+        public IList<Wall> Walls { get { return _walls.AsReadOnly(); } }
 
         #endregion
 
