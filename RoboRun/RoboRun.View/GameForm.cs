@@ -113,20 +113,17 @@ namespace RoboRun.View
 
         private void MenuGameSmall_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuGameSmall_Click
-            throw new NotImplementedException();
+            _model.GameTableSize = GameTableSize.Small;
         }
 
         private void MenuGameMedium_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuGameMedium_Click
-            throw new NotImplementedException();
+            _model.GameTableSize = GameTableSize.Medium;
         }
 
         private void MenuGameBig_Click(object? sender, EventArgs e)
         {
-            // TODO: GameForm.MenuGameBig_Click
-            throw new NotImplementedException();
+            _model.GameTableSize = GameTableSize.Big;
         }
 
         #endregion
