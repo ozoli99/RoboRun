@@ -40,8 +40,9 @@ namespace RoboRun.Model
 
         #region Events
 
-        public event EventHandler<RoboRunEventArgs> GameWin;
-        public event EventHandler? GameAdvanced;
+        public event EventHandler<RoboRunEventArgs>? GameWin;
+        public event EventHandler<RoboRunEventArgs>? GameAdvanced;
+        public event EventHandler<RoboRunEventArgs>? GameTimeAdvanced;
 
         #endregion
 
@@ -100,7 +101,15 @@ namespace RoboRun.Model
             GameTable.BuildWall(x, y);
             GameTable.SetLock(x, y);
 
-            GameAdvanced?.Invoke(this, new EventArgs());
+            GameAdvanced?.Invoke(this, new RoboRunEventArgs(GameTime));
+        }
+
+        public void AdvanceTime()
+        {
+            if (IsGameWin)
+                return;
+
+            _gameTime++;
         }
 
         public async Task LoadGameAsync(string path)

@@ -11,6 +11,7 @@ namespace RoboRun.View
         private RoboRunModel _model;    // game model
         private Button[,] _buttonGrid;
         private System.Windows.Forms.Timer _timer;
+        private System.Windows.Forms.Timer _robotTimer;
 
         #endregion
 
@@ -38,12 +39,17 @@ namespace RoboRun.View
 
             // Create model
             _model = new RoboRunModel(_dataAccess);
-            _model.GameWin += new EventHandler(Game_GameWin);
+            _model.GameWin += new EventHandler<RoboRunEventArgs>(Game_GameWin);
 
-            // Create timer
+            // Create timer for game time
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 1000;
             _timer.Tick += new EventHandler(Timer_Tick);
+
+            // Create timer for robot movement
+            _robotTimer = new System.Windows.Forms.Timer();
+            _robotTimer.Interval = 500;
+            _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
 
             // Initialize gameTable and menus
             GenerateGameTable();
@@ -54,6 +60,7 @@ namespace RoboRun.View
             SetupGameTable();
 
             _timer.Start();
+            _robotTimer.Start();
         }
 
         #endregion
@@ -63,6 +70,7 @@ namespace RoboRun.View
         private void Game_GameWin(object? sender, RoboRunEventArgs e)
         {
             _timer.Stop();
+            _robotTimer.Stop();
 
             foreach (Button button in _buttonGrid)
             {
@@ -104,12 +112,14 @@ namespace RoboRun.View
             SetupMenus();
 
             _timer.Start();
+            _robotTimer.Start();
         }
 
         private async void MenuFileLoadGame_Click(object? sender, EventArgs e)
         {
             bool restartTimer = _timer.Enabled;
             _timer.Stop();
+            _robotTimer.Stop();
 
             if (_openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -130,13 +140,17 @@ namespace RoboRun.View
             }
 
             if (restartTimer)
+            {
                 _timer.Start();
+                _robotTimer.Start();
+            }
         }
 
         private async void MenuFileSaveGame_Click(object? sender, EventArgs e)
         {
             bool restartTimer = _timer.Enabled;
             _timer.Stop();
+            _robotTimer.Stop();
 
             if (_saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -151,7 +165,10 @@ namespace RoboRun.View
             }
 
             if (restartTimer)
+            {
                 _timer.Start();
+                _robotTimer.Start();
+            }
         }
 
         /// <summary>
@@ -161,6 +178,7 @@ namespace RoboRun.View
         {
             bool restartTimer = _timer.Enabled;
             _timer.Stop();
+            _robotTimer.Stop();
 
             if (MessageBox.Show("Are you sure you want to quit?", "RoboRun", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -171,6 +189,7 @@ namespace RoboRun.View
                 if (restartTimer)
                 {
                     _timer.Start();
+                    _robotTimer.Start();
                 }
             }
         }
@@ -196,8 +215,12 @@ namespace RoboRun.View
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            // TODO: GameForm.Timer_Tick
-            throw new NotImplementedException();
+            _model.AdvanceTime();
+        }
+
+        private void RobotTimer_Tick(object? sender, EventArgs e)
+        {
+
         }
 
         #endregion
