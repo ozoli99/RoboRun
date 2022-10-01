@@ -54,11 +54,13 @@
 
         public bool HasWall(int x, int y)
         {
+            // TODO: RoboRunTable.HasWall
             throw new NotImplementedException();
         }
 
         public bool IsLocked(int x, int y)
         {
+            // TODO: RoboRunTable.IsLocked
             throw new NotImplementedException();
         }
 

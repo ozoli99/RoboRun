@@ -62,6 +62,7 @@ namespace RoboRun.View
 
         private void Game_GameOver(object? sender, EventArgs e)
         {
+            // TODO: GameForm.Game_GameOver
             throw new NotImplementedException();
         }
 
@@ -69,9 +70,17 @@ namespace RoboRun.View
 
         #region Grid event handler
 
+        /// <summary>
+        /// Event handler of button grid.
+        /// </summary>
         private void ButtonGrid_MouseClick(object? sender, MouseEventArgs e)
         {
+            int x = ((sender as Button).TabIndex - 100) / _model.GameTable.Size;
+            int y = ((sender as Button).TabIndex - 100) % _model.GameTable.Size;
 
+            _model.Step(x, y);
+
+            // TODO: Refresh field display.
         }
 
         #endregion
@@ -80,36 +89,43 @@ namespace RoboRun.View
 
         private void MenuFileNewGame_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuFileNewGame_Click
             throw new NotImplementedException();
         }
 
         private void MenuFileLoadGame_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuFileLoadGame_Click
             throw new NotImplementedException();
         }
 
         private void MenuFileSaveGame_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuFileSaveGame_Click
             throw new NotImplementedException();
         }
 
         private void MenuFileExitGame_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuFileExitGame_Click
             throw new NotImplementedException();
         }
 
         private void MenuGameSmall_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuGameSmall_Click
             throw new NotImplementedException();
         }
 
         private void MenuGameMedium_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuGameMedium_Click
             throw new NotImplementedException();
         }
 
         private void MenuGameBig_Click(object? sender, EventArgs e)
         {
+            // TODO: GameForm.MenuGameBig_Click
             throw new NotImplementedException();
         }
 
@@ -119,6 +135,7 @@ namespace RoboRun.View
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
+            // TODO: GameForm.Timer_Tick
             throw new NotImplementedException();
         }
 
@@ -151,11 +168,13 @@ namespace RoboRun.View
 
         private void SetupGameTable()
         {
+            // TODO: GameForm.SetupGameTable
             throw new NotImplementedException();
         }
 
         private void SetupMenus()
         {
+            // TODO: GameForm.SetupMenus
             throw new NotImplementedException();
         }
 

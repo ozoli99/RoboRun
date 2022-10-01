@@ -47,16 +47,19 @@ namespace RoboRun.Model
 
         public void Step(int x, int y)
         {
+            // TODO: RoboRunModel.Step
             throw new NotImplementedException();
         }
 
         public void LoadGame(string path)
         {
+            // TODO: RoboRunModel.LoadGame
             throw new NotImplementedException();
         }
 
         public void SaveGame(string path)
         {
+            // TODO: RoboRunModel.SaveGame
             throw new NotImplementedException();
         }
 
