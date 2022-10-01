@@ -166,10 +166,47 @@ namespace RoboRun.View
             }
         }
 
+        /// <summary>
+        /// Setup game table.
+        /// </summary>
         private void SetupGameTable()
         {
-            // TODO: GameForm.SetupGameTable
-            throw new NotImplementedException();
+            for (int i = 0; i < _buttonGrid.GetLength(0); i++)
+            {
+                for (int j = 0; j < _buttonGrid.GetLength(1); j++)
+                {
+                    if (_model.GameTable.IsLocked(i, j))
+                    {
+                        _buttonGrid[i, j].Enabled = false;
+                        _buttonGrid[i, j].BackColor = Color.Gray;
+                    }
+                    else
+                    {
+                        _buttonGrid[i, j].Enabled = true;
+                        _buttonGrid[i, j].BackColor = Color.White;
+                    }
+
+                    if (_model.GameTable.HasWall(i, j))
+                    {
+                        _buttonGrid[i, j].BackColor = Color.Yellow;
+                    }
+                    else
+                    {
+                        if (_model.GameTable.IsLocked(i, j))
+                        {
+                            _buttonGrid[i, j].Enabled = false;
+                            _buttonGrid[i, j].BackColor = Color.Gray;
+                        }
+                        else
+                        {
+                            _buttonGrid[i, j].Enabled = true;
+                            _buttonGrid[i, j].BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+
+            _toolLabelGameTime.Text = TimeSpan.FromSeconds(_model.GameTime).ToString("g");
         }
 
         /// <summary>
