@@ -174,6 +174,7 @@ namespace RoboRun.Model
                         break;
                 }
             }
+            CheckGame();
             RobotMoved?.Invoke(this, new EventArgs());
         }
 
@@ -203,6 +204,14 @@ namespace RoboRun.Model
             Random random = new Random();
             GameTable.Robot.MovementDirection = (Direction)values.GetValue(random.Next(values.Length));
             GameTable.Robot.ReachedWall = false;
+        }
+
+        private void CheckGame()
+        {
+            if (GameTable.Robot.X == GameTable.Size / 2 && GameTable.Robot.Y == GameTable.Size / 2)
+            {
+                GameWin?.Invoke(this, new RoboRunEventArgs(_gameTime));
+            }
         }
 
         #endregion
