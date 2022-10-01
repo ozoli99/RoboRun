@@ -50,7 +50,7 @@ namespace RoboRun.View
 
             // Create timer for robot movement
             _robotTimer = new System.Windows.Forms.Timer();
-            _robotTimer.Interval = 500;
+            _robotTimer.Interval = 250;
             _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
 
             NewGame();
@@ -75,7 +75,10 @@ namespace RoboRun.View
 
             _menuFileSaveGame.Enabled = false;
 
-            MessageBox.Show("You Won!" + Environment.NewLine + "Time: " + TimeSpan.FromSeconds(e.ElapsedTime).ToString("g"), "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            if (MessageBox.Show("You Won!" + Environment.NewLine + "Time: " + TimeSpan.FromSeconds(e.ElapsedTime).ToString("g"), "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
+            {
+                NewGame();
+            }
         }
 
         /// <summary>
@@ -121,14 +124,10 @@ namespace RoboRun.View
         /// </summary>
         private void MenuFileNewGame_Click(object? sender, EventArgs e)
         {
-            _menuFileSaveGame.Enabled = true;
+            _timer.Stop();
+            _robotTimer.Stop();
 
-            _model.NewGame();
-            SetupGameTable();
-            SetupMenus();
-
-            _timer.Start();
-            _robotTimer.Start();
+            NewGame();
         }
 
         /// <summary>
@@ -151,8 +150,7 @@ namespace RoboRun.View
                 {
                     MessageBox.Show("Error occurred during load!" + Environment.NewLine + "Wrong path or file format.", "RoboRun Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    _model.NewGame();
-                    _menuFileSaveGame.Enabled = true;
+                    NewGame();
                 }
 
                 SetupGameTable();
@@ -279,6 +277,7 @@ namespace RoboRun.View
             GenerateGameTable();
             SetupGameTable();
             SetupMenus();
+            _menuFileSaveGame.Enabled = true;
 
             // Setup window parameters
             this.Width = (_model.GameTable.Size * 50) + 26;
