@@ -121,10 +121,16 @@
   <data name="floor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\floor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="homeFloor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\homeFloor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="robotFloor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\robotFloor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\wall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wallCollapsed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\wallCollapsed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

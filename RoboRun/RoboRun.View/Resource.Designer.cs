@@ -73,6 +73,16 @@ namespace RoboRun.View {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap homeFloor {
+            get {
+                object obj = ResourceManager.GetObject("homeFloor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap robotFloor {
             get {
                 object obj = ResourceManager.GetObject("robotFloor", resourceCulture);
@@ -86,6 +96,16 @@ namespace RoboRun.View {
         internal static System.Drawing.Bitmap wall {
             get {
                 object obj = ResourceManager.GetObject("wall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallCollapsed {
+            get {
+                object obj = ResourceManager.GetObject("wallCollapsed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
