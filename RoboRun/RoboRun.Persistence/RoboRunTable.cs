@@ -107,6 +107,11 @@
             return (_robot.X == x && _robot.Y == y);
         }
 
+        public bool IsHome(int x, int y)
+        {
+            return (x == _fieldLocks.GetLength(0) / 2 && y ==  _fieldLocks.GetLength(1) / 2);
+        }
+
         /// <summary>
         /// Build a wall on the game table.
         /// </summary>

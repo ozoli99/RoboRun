@@ -213,6 +213,8 @@ namespace RoboRun.View
             }
         }
 
+        // TODO: Size handling gone wrong.
+
         /// <summary>
         /// Event handler of changing game table size to small in Settings menu.
         /// </summary>
@@ -269,6 +271,8 @@ namespace RoboRun.View
         /// </summary>
         private void NewGame()
         {
+            // TODO: Only timer start again on new game.
+
             // Start new game
             _model.NewGame();
 
@@ -314,39 +318,60 @@ namespace RoboRun.View
         /// </summary>
         private void SetupGameTable()
         {
+            int homeCoordinate = _model.GameTable.Size / 2;
+            
+            _buttonGrid[homeCoordinate, homeCoordinate].Enabled = false;
+            _buttonGrid[homeCoordinate, homeCoordinate].BackgroundImage = View.Resource.homeFloor;
+            _buttonGrid[homeCoordinate, homeCoordinate].BackgroundImageLayout = ImageLayout.Stretch;
+            _buttonGrid[homeCoordinate, homeCoordinate].Size = _buttonGrid[homeCoordinate, homeCoordinate].BackgroundImage.Size;
+
             for (int i = 0; i < _buttonGrid.GetLength(0); i++)
             {
                 for (int j = 0; j < _buttonGrid.GetLength(1); j++)
                 {
-                    if (_model.GameTable.IsRobot(i, j))
+                    if (!_model.GameTable.IsHome(i, j))
                     {
-                        _buttonGrid[i, j].Enabled = false;
-                        _buttonGrid[i, j].BackgroundImage = View.Resource.robotFloor;
-                        _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                        _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
-                    }
-                    else
-                    {
-                        if (_model.GameTable.HasWall(i, j))
+                        if (_model.GameTable.IsRobot(i, j))
                         {
                             _buttonGrid[i, j].Enabled = false;
-                            _buttonGrid[i, j].BackgroundImage = View.Resource.wall;
+                            _buttonGrid[i, j].BackgroundImage = View.Resource.robotFloor;
                             _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                             _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                         }
                         else
                         {
-                            if (_model.GameTable.IsLocked(i, j))
+                            // TODO: Logic for collapsed wall
+                            if (_model.GameTable.HasWall(i, j))
                             {
-                                _buttonGrid[i, j].Enabled = false;
-                                _buttonGrid[i, j].BackColor = Color.Gray;
+                                if (_model.GameTable.Robot.ReachedWall)
+                                {
+                                    _buttonGrid[i, j].Enabled = false;
+                                    _buttonGrid[i, j].BackgroundImage = View.Resource.wallCollapsed;
+                                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
+                                }
+                                else
+                                {
+                                    _buttonGrid[i, j].Enabled = false;
+                                    _buttonGrid[i, j].BackgroundImage = View.Resource.wall;
+                                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
+                                }
                             }
                             else
                             {
-                                _buttonGrid[i, j].Enabled = true;
-                                _buttonGrid[i, j].BackgroundImage = View.Resource.floor;
-                                _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                                _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
+                                if (_model.GameTable.IsLocked(i, j))
+                                {
+                                    _buttonGrid[i, j].Enabled = false;
+                                    _buttonGrid[i, j].BackColor = Color.Gray;
+                                }
+                                else
+                                {
+                                    _buttonGrid[i, j].Enabled = true;
+                                    _buttonGrid[i, j].BackgroundImage = View.Resource.floor;
+                                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
+                                }
                             }
                         }
                     }
