@@ -50,7 +50,7 @@
             int x, y;
             x = random.Next(tableSize);
             y = random.Next(tableSize);
-            while (x == _fieldLocks.GetLength(0) && y == _fieldLocks.GetLength(1))
+            while (x == tableSize / 2 && y == tableSize / 2)
             {
                 x = random.Next(tableSize);
                 y = random.Next(tableSize);
