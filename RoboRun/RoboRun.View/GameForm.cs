@@ -94,7 +94,6 @@ namespace RoboRun.View
         /// </summary>
         private void Game_RobotMoved(object? sender, EventArgs e)
         {
-            //_buttonGrid[i, j].BackgroundImage = (Image)Resource.ResourceManager.GetObject("robot");
             SetupGameTable();
         }
 
@@ -112,7 +111,7 @@ namespace RoboRun.View
 
             _model.Step(x, y);
 
-            // TODO: Refresh field display.
+            SetupGameTable();
         }
 
         #endregion
@@ -280,8 +279,8 @@ namespace RoboRun.View
             _menuFileSaveGame.Enabled = true;
 
             // Setup window parameters
-            this.Width = (_model.GameTable.Size * 50) + 26;
-            this.Height = (_model.GameTable.Size * 50) + 110;
+            this.Width = (_model.GameTable.Size * 64) + 26;
+            this.Height = (_model.GameTable.Size * 64) + 110;
 
             _timer.Start();
             _robotTimer.Start();
@@ -298,9 +297,8 @@ namespace RoboRun.View
                 for (int j = 0; j < _model.GameTable.Size; j++)
                 {
                     _buttonGrid[i, j] = new Button();
-                    _buttonGrid[i, j].Location = new Point(5 + 50 * j, 35 + 50 * i);
-                    _buttonGrid[i, j].Size = new Size(50, 50);
-                    //_buttonGrid[i, j].BackgroundImage = (Image)Resource.ResourceManager.GetObject("robot");
+                    _buttonGrid[i, j].Location = new Point(5 + 64 * j, 35 + 64 * i);
+                    _buttonGrid[i, j].Size = new Size(64, 64);
                     _buttonGrid[i, j].Enabled = false;
                     _buttonGrid[i, j].TabIndex = 100 + i * _model.GameTable.Size + j;
                     _buttonGrid[i, j].FlatStyle = FlatStyle.Flat;
@@ -323,14 +321,18 @@ namespace RoboRun.View
                     if (_model.GameTable.IsRobot(i, j))
                     {
                         _buttonGrid[i, j].Enabled = false;
-                        _buttonGrid[i, j].BackColor = Color.Black;
+                        _buttonGrid[i, j].BackgroundImage = View.Resource.robotFloor;
+                        _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                        _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                     }
                     else
                     {
                         if (_model.GameTable.HasWall(i, j))
                         {
                             _buttonGrid[i, j].Enabled = false;
-                            _buttonGrid[i, j].BackColor = Color.Yellow;
+                            _buttonGrid[i, j].BackgroundImage = View.Resource.wall;
+                            _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                            _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                         }
                         else
                         {
@@ -342,7 +344,9 @@ namespace RoboRun.View
                             else
                             {
                                 _buttonGrid[i, j].Enabled = true;
-                                _buttonGrid[i, j].BackColor = Color.White;
+                                _buttonGrid[i, j].BackgroundImage = View.Resource.floor;
+                                _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                                _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                             }
                         }
                     }
