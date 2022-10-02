@@ -50,6 +50,11 @@
             int x, y;
             x = random.Next(tableSize);
             y = random.Next(tableSize);
+            while (x == _fieldLocks.GetLength(0) && y == _fieldLocks.GetLength(1))
+            {
+                x = random.Next(tableSize);
+                y = random.Next(tableSize);
+            }
             Array values = Enum.GetValues(typeof(Direction));
             Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
 
@@ -109,6 +114,8 @@
         /// <param name="y">Vertical coordinate.</param>
         public void BuildWall(int x, int y)
         {
+            if (x == _fieldLocks.GetLength(0) / 2 && y == _fieldLocks.GetLength(1) / 2)
+                throw new ArgumentException("The given field is the Home field.");
             if (x < 0 || x >= _fieldLocks.GetLength(0))
                 throw new ArgumentOutOfRangeException("x", "The X coordinate is out of range.");
             if (y < 0 || y >= _fieldLocks.GetLength(1))
@@ -116,6 +123,8 @@
 
             Wall newWall = new Wall(x, y);
             _walls.Add(newWall);
+
+            _fieldLocks[x, y] = true;
         }
 
         /// <summary>

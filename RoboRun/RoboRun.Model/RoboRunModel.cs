@@ -199,7 +199,12 @@ namespace RoboRun.Model
         {
             Array values = Enum.GetValues(typeof(Direction));
             Random random = new Random();
-            GameTable.Robot.MovementDirection = (Direction)values.GetValue(random.Next(values.Length));
+            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
+            while (GameTable.Robot.MovementDirection == randomDirection)
+            {
+                randomDirection = (Direction)values.GetValue(random.Next(values.Length));
+            }
+            GameTable.Robot.MovementDirection = randomDirection;
             GameTable.Robot.ReachedWall = false;
         }
 

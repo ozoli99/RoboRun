@@ -50,7 +50,7 @@ namespace RoboRun.View
 
             // Create timer for robot movement
             _robotTimer = new System.Windows.Forms.Timer();
-            _robotTimer.Interval = 250;
+            _robotTimer.Interval = 150;
             _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
 
             NewGame();
