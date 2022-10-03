@@ -69,6 +69,9 @@ namespace RoboRun.View
                 case Keys.Space:
                     _model.PauseGame();
                     break;
+                case Keys.Escape:
+                    ExitGame();
+                    break;
             }
         }
 
@@ -229,22 +232,7 @@ namespace RoboRun.View
         /// </summary>
         private void MenuFileExitGame_Click(object? sender, EventArgs e)
         {
-            bool restartTimer = _timer.Enabled;
-            _timer.Stop();
-            _robotTimer.Stop();
-
-            if (MessageBox.Show("Are you sure you want to quit?", "RoboRun", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Close();
-            }
-            else
-            {
-                if (restartTimer)
-                {
-                    _timer.Start();
-                    _robotTimer.Start();
-                }
-            }
+            ExitGame();
         }
 
         /// <summary>
@@ -418,6 +406,29 @@ namespace RoboRun.View
             _menuGameSmall.Checked = (_model.GameTableSize == GameTableSize.Small);
             _menuGameMedium.Checked = (_model.GameTableSize == GameTableSize.Medium);
             _menuGameBig.Checked = (_model.GameTableSize == GameTableSize.Big);
+        }
+
+        /// <summary>
+        /// Exit the game after displaying a dialog.
+        /// </summary>
+        private void ExitGame()
+        {
+            bool restartTimer = _timer.Enabled;
+            _timer.Stop();
+            _robotTimer.Stop();
+
+            if (MessageBox.Show("Are you sure you want to quit?", "RoboRun", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Close();
+            }
+            else
+            {
+                if (restartTimer)
+                {
+                    _timer.Start();
+                    _robotTimer.Start();
+                }
+            }
         }
 
         #endregion
