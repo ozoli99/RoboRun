@@ -29,11 +29,102 @@ namespace RoboRunTest
         #region Load
 
         [TestMethod]
-        public void TestLoadGame()
+        public void RoboRunModelNewGameSmallTest()
         {
-            RoboRunTable gameTable = new RoboRunTable(11, 3, 9, Direction.Up);
+            _model.GameTableSize = GameTableSize.Small;
 
-            _mock.Setup(m => m.LoadAsync("path")).Returns(gameTable);
+            _model.NewGame(2, 5, Direction.Down);
+
+            Assert.AreEqual(0, _model.GameTime);
+            Assert.AreEqual(7, _model.GameTable.Size);
+            Assert.AreEqual(2, _model.GameTable.Robot.X);
+            Assert.AreEqual(5, _model.GameTable.Robot.Y);
+            Assert.AreEqual(Direction.Down, _model.GameTable.Robot.MovementDirection);
+            Assert.AreEqual(0, _model.GameTable.Walls.Count);
+
+            for (int i = 0; i < _model.GameTable.Size; i++)
+            {
+                for (int j = 0; j < _model.GameTable.Size; j++)
+                {
+                    Assert.AreEqual(false, _model.GameTable.IsLocked(i, j));
+                    Assert.AreEqual(false, _model.GameTable.HasWall(i, j));
+
+                    if (i == _model.GameTable.Size / 2 && j == _model.GameTable.Size / 2)
+                    {
+                        Assert.AreEqual(true, _model.GameTable.IsHome(i, j));
+                    }
+                    if (i == _model.GameTable.Robot.X && j == _model.GameTable.Robot.Y)
+                    {
+                        Assert.AreEqual(true, _model.GameTable.IsRobot(i, j));
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void RoboRunModelNewGameMediumTest()
+        {
+            _model.GameTableSize = GameTableSize.Medium;
+
+            _model.NewGame(2, 5, Direction.Down);
+
+            Assert.AreEqual(0, _model.GameTime);
+            Assert.AreEqual(11, _model.GameTable.Size);
+            Assert.AreEqual(2, _model.GameTable.Robot.X);
+            Assert.AreEqual(5, _model.GameTable.Robot.Y);
+            Assert.AreEqual(Direction.Down, _model.GameTable.Robot.MovementDirection);
+            Assert.AreEqual(0, _model.GameTable.Walls.Count);
+
+            for (int i = 0; i < _model.GameTable.Size; i++)
+            {
+                for (int j = 0; j < _model.GameTable.Size; j++)
+                {
+                    Assert.AreEqual(false, _model.GameTable.IsLocked(i, j));
+                    Assert.AreEqual(false, _model.GameTable.HasWall(i, j));
+
+                    if (i == _model.GameTable.Size / 2 && j == _model.GameTable.Size / 2)
+                    {
+                        Assert.AreEqual(true, _model.GameTable.IsHome(i, j));
+                    }
+                    if (i == _model.GameTable.Robot.X && j == _model.GameTable.Robot.Y)
+                    {
+                        Assert.AreEqual(true, _model.GameTable.IsRobot(i, j));
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void RoboRunModelNewGameBigTest()
+        {
+            _model.GameTableSize = GameTableSize.Big;
+
+            _model.NewGame(2, 5, Direction.Down);
+
+            Assert.AreEqual(0, _model.GameTime);
+            Assert.AreEqual(15, _model.GameTable.Size);
+            Assert.AreEqual(2, _model.GameTable.Robot.X);
+            Assert.AreEqual(5, _model.GameTable.Robot.Y);
+            Assert.AreEqual(Direction.Down, _model.GameTable.Robot.MovementDirection);
+            Assert.AreEqual(0, _model.GameTable.Walls.Count);
+
+            for (int i = 0; i < _model.GameTable.Size; i++)
+            {
+                for (int j = 0; j < _model.GameTable.Size; j++)
+                {
+                    Assert.AreEqual(false, _model.GameTable.IsLocked(i, j));
+                    Assert.AreEqual(false, _model.GameTable.HasWall(i, j));
+
+                    if (i == _model.GameTable.Size / 2 && j == _model.GameTable.Size / 2)
+                    {
+                        Assert.AreEqual(true, _model.GameTable.IsHome(i, j));
+                    }
+                    if (i == _model.GameTable.Robot.X && j == _model.GameTable.Robot.Y)
+                    {
+                        Assert.AreEqual(true, _model.GameTable.IsRobot(i, j));
+                    }
+                }
+            }
         }
 
         #endregion
