@@ -42,6 +42,7 @@ namespace RoboRun.View
             _model = new RoboRunModel(_dataAccess);
             _model.GameWin += new EventHandler<RoboRunEventArgs>(Game_GameWin);
             _model.GameTimeAdvanced += new EventHandler<RoboRunEventArgs>(Game_GameTimeAdvanced);
+            _model.GameTimePaused += new EventHandler<RoboRunEventArgs>(Game_GameTimePaused);
             _model.RobotMoved += new EventHandler(Game_RobotMoved);
 
             _timer = new System.Windows.Forms.Timer();
@@ -52,7 +53,23 @@ namespace RoboRun.View
             _robotTimer.Interval = 150;
             _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
 
+            KeyPreview = true;
+            KeyDown += new KeyEventHandler(GameForm_KeyDown);
+
             NewGame();
+        }
+
+        /// <summary>
+        /// Event handler of key press down.
+        /// </summary>
+        private void GameForm_KeyDown(object? sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    _model.PauseGame();
+                    break;
+            }
         }
 
         #endregion
@@ -87,6 +104,21 @@ namespace RoboRun.View
         private void Game_GameTimeAdvanced(object? sender, RoboRunEventArgs e)
         {
             _toolLabelGameTime.Text = TimeSpan.FromSeconds(e.ElapsedTime).ToString("g");
+        }
+
+        /// <summary>
+        /// Event handler of game time paused.
+        /// </summary>
+        private void Game_GameTimePaused(object? sender, RoboRunEventArgs e)
+        {
+            _timer.Stop();
+            _robotTimer.Stop();
+
+            if (MessageBox.Show("Game Paused" + Environment.NewLine + "Do you want to continue the game?", "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                _timer.Start();
+                _robotTimer.Start();
+            }
         }
 
         /// <summary>

@@ -42,6 +42,7 @@ namespace RoboRun.Model
 
         public event EventHandler<RoboRunEventArgs>? GameWin;
         public event EventHandler<RoboRunEventArgs>? GameTimeAdvanced;
+        public event EventHandler<RoboRunEventArgs>? GameTimePaused;
         public event EventHandler? RobotMoved;
 
         #endregion
@@ -82,6 +83,14 @@ namespace RoboRun.Model
                     _gameTable = new RoboRunTable(GameTableSizeBig);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Fire GameTimePaused event to freeze the game.
+        /// </summary>
+        public void PauseGame()
+        {
+            GameTimePaused?.Invoke(this, new RoboRunEventArgs(_gameTime));
         }
 
         /// <summary>
