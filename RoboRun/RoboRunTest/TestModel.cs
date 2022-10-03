@@ -8,24 +8,22 @@ namespace RoboRunTest
     public class TestModel
     {
         private RoboRunModel _model;
+        private RoboRunTable _mockedTable;
         private Mock<IRoboRunDataAccess> _mock;
-
-        public TestModel()
-        {
-            _mock = new Mock<IRoboRunDataAccess>();
-            _model = new RoboRunModel(_mock.Object);
-        }
 
         [TestInitialize]
         public void Initialize()
         {
+            _mockedTable = new RoboRunTable(11, 3, 9, Direction.Up);
 
-        }
+            _mock = new Mock<IRoboRunDataAccess>();
+            _mock.Setup(mock => mock.LoadAsync(It.IsAny<string>())).Returns(() => Task.FromResult(_mockedTable));
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-
+            _model = new RoboRunModel(_mock.Object);
+            _model.GameWin += new EventHandler<RoboRunEventArgs>(Model_GameWin);
+            _model.GameTimeAdvanced += new EventHandler<RoboRunEventArgs>(Model_GameTimeAdvanced);
+            _model.GameTimePaused += new EventHandler<RoboRunEventArgs>(Model_GameTimePaused);
+            _model.RobotMoved += new EventHandler(Model_RobotMoved);
         }
 
         #region Load
@@ -33,11 +31,9 @@ namespace RoboRunTest
         [TestMethod]
         public void TestLoadGame()
         {
-            int gameTime = 0;
-            int tableSize = 0;
+            RoboRunTable gameTable = new RoboRunTable(11, 3, 9, Direction.Up);
 
-            RoboRunTable gameTable = new RoboRunTable(tableSize, 0, 0, Direction.Up);
-            _mock.Setup(m => m.LoadAsync("path"));
+            _mock.Setup(m => m.LoadAsync("path")).Returns(gameTable);
         }
 
         #endregion
