@@ -73,6 +73,59 @@ található mágnes alá). Szintén dialógusablakkal végezzük el a mentést, 
 
 ## Tervezés
 ### Programszerkezet
-- A programot háromrétegű architektúrában valósítjuk meg. A megjelenítés a RoboRun.View, a modell a RoboRun.Model, 
-míg a perzisztencia a RoboRun.Persistence névtérben helyezkedik el.
+- A programot háromrétegű architektúrában valósítjuk meg. A megjelenítés a **RoboRun.View**, a modell a **RoboRun.Model**, 
+míg a perzisztencia a **RoboRun.Persistence** névtérben helyezkedik el.
 Továbbá a rétegeket külön projektként adjuk hozzá az újrafelhasználhatóság érdekében.
+
+![Application package diagram](https://github.com/ozoli99/RoboRun/blob/main/Media/ApplicationPackageDiagram.jpg)
+
+### Perzisztencia
+- Az adatkezelés feladata a RoboRun táblával kapcsolatos információk tárolása, valamint a betöltés/mentés biztosítása.
+- A **RoboRunTable** osztály egy érvényes RoboRun táblát biztosít (azaz mindig ellenőrzi a beállított értékeket), 
+ahol minden mezőről ismert a zároltsága (**_fieldLocks**).
+Ezt akkor alkalmazzuk, ha a mező a Home mező, esetleg robot tartózkodik rajta, vagy már épült rá fal. 
+A tábla alapértelmezés szerint (11 x 11)-es, de ez a konstruktorban paraméterezhető, leírás szerint (7 x 7) vagy (15 x 15) 
+méretűre változtatható. A tábla lehetőséget ad állapotok lekérdezésére (**HasWall**, **IsRobot**, **IsHome**, **GetWall**, **IsLocked**), 
+illetve beállítására (**BuildWall**, **SetLock**).
+- A hosszú távú adattárolás lehetőségeit az **IRoboRunDataAccess** interfész adja meg, amely lehetőséget ad a tábla betöltésére (**LoadAsync**), 
+valamint mentésére (**SaveAsync**). A műveleteket hatékonysági okokból aszinkron módon valósítjuk meg.
+- Az interfészt szöveges fájl alapú adatkezelésre a RoboRunFileDataAccess osztály valósítja meg. A fájlkezelés során fellépő hibákat a 
+**RoboRunDataException** kivétel jelzi.
+- A program az adatokat szöveges fájlként tudja eltárolni, melyek az **rrt** kiterjesztést kapják. 
+Ezeket az adatokat a programban bármikor be lehet tölteni, illetve ki lehet menteni az aktuális állást.
+- A fájl első sora megadja az eltelt játékidőt, valamint a tábla méretét. A fájl többi része izomorf leképezése a játéktáblának, 
+azaz a tábla méretének megfelelő számú sor következik ugyanennyi számmal soronként. Ezek a számok a 0 és 1 értéket vehetik fel,
+a mező zároltságának megfelelően. Ezután a robot adatai következnek egy sorban, majd még egy sorban a falak száma. 
+Az utóbbi számnak megfelelő mennyiségű sorban pedig a falak adatai következnek.
+
+### Modell
+- A modell lényegi részét a **RoboRunModel** osztály valósítja meg, amely szabályozza a tábla tevékenységeit, 
+valamint a játék egyéb paramétereit, úgymint az idő (**_gameTime**). A típus lehetőséget ad új játék kezdésére (**NewGame**),
+valamint lépésre (**Step**). Új játéknál megadható a játéktábla mérete is, különben alapértelmezetten (11 x 11)-es méretű lesz.
+Az idő előreléptetését időbeli lépések végzésével (**AdvanceTime**) tehetjük meg.
+- Az idő múlásáról a **GameTimeAdvanced**, az idő megállításáról a **GameTimePaused**, a robot mozgásáról a **RobotMoved**,
+a játék végéről pedig a **GameWin** események tájékoztatnak. Az események argumentuma (a **RobotMoved** eseményen kívül) (**RoboRunEventArgs**)
+tárolja az eltelt játék időt.
+- A modell példányosításkor megkapja az adatkezelés felületét, amelynek segítségével lehetőséget ad 
+betöltésre (**LoadAsync**) és mentésre (**SaveAsync**).
+- A játéktábla méretét a **GameTableSize** felsorolási típuson át kezeljük, és a **RoboRunModel** osztályban konstansok 
+segítségével tároljuk az egyes méretek paramétereit.
+
+### Nézet
+- A nézetet a **GameForm** osztály biztosítja, amely tárolja a modell egy példányát (**_model**),
+valamint az adatelérés konkrét példányát (**_dataAccess**).
+- A játéktáblát egy dinamikusan létrehozott gombmező (**_buttonGrid**) reprezentálja. 
+A felületen létrehozzuk a megfelelő menüpontokat, illetve státuszsort, valamint dialógusablakokat, 
+és a hozzájuk tartozó eseménykezelőket. A játéktábla generálását (**GenerateGameTable**), 
+illetve az értékek beállítását (**SetupGameTable**) külön metódusok végzik.
+- A játék időbeli kezelését egy időzítő végzi (**_timer**), ahogy robot mozgását is ez vezérli (**_robotTimer**).
+Ezeket mindig aktiváljuk a játék során, illetve inaktiváljuk, amennyiben bizonyos menüfunkciók futnak.
+
+## Tesztelés
+- A modell funkcionalitása egységtesztek segítségével lett ellenőrizve a **TestModel** osztályban.
+- Az alábbi tesztesetek kerültek megvalósításra:
+  - **RoboRunModelNewGameSmallTest**, **RoboRunModelNewGameMediumTest**, **RoboRunModelNewGameBigTest**:
+  Új játék indítása, a mezők kitöltése, valamint a tábla méretének ellenőrzése a beállított méret alapján
+  - **RoboRunModelStepTest**: Játékbeli lépés hatásainak ellenőrzése, játék megkezdése előtt, valamint után.
+  - **RoboRunModelAdvanceTimeTest**: A játékbeli idő kezelésének ellenőrzése.
+  - **RoboRunModelLoadTest**: A játék modell betöltésének tesztelése mockolt perzisztencia réteggel.
