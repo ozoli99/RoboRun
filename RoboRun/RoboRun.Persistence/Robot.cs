@@ -16,6 +16,7 @@
         public int Y { get; set; }
         public bool ReachedHome { get; set; }
         public bool ReachedWall { get; set; }
+        public bool ReachedEnd { get; set; }
         public Direction MovementDirection { get; set; }
 
         #endregion
@@ -30,13 +31,15 @@
         /// <param name="movementDirection">Direction to move.</param>
         /// <param name="reachedHome">The robot reached home.</param>
         /// <param name="reachedWall">The robot reached a wall.</param>
-        public Robot(int x, int y, Direction movementDirection, bool reachedHome = false, bool reachedWall = false)
+        /// <param name="reachedEnd">The robot reached the end of the game table.</param>
+        public Robot(int x, int y, Direction movementDirection, bool reachedHome = false, bool reachedWall = false, bool reachedEnd = false)
         {
             X = x;
             Y = y;
             MovementDirection = movementDirection;
             ReachedHome = reachedHome;
             ReachedWall = reachedWall;
+            ReachedEnd = reachedEnd;
         }
 
         #endregion

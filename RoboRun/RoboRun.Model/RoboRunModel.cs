@@ -128,67 +128,127 @@ namespace RoboRun.Model
                 switch (GameTable.Robot.MovementDirection)
                 {
                     case Direction.Up:
-                        if (GameTable.Robot.X - 1 < 0 || GameTable.HasWall(GameTable.Robot.X - 1, GameTable.Robot.Y))
+                        if (GameTable.Robot.X - 1 < 0)
                         {
-                            GameTable.Robot.ReachedWall = true;
+                            GameTable.Robot.ReachedEnd = true;
                             GenerateRandomDirection();
-                            if (GameTable.HasWall(GameTable.Robot.X - 1, GameTable.Robot.Y))
-                            {
-                                GameTable.GetWall(GameTable.Robot.X - 1, GameTable.Robot.Y).Collapsed = true;
-                            }
                         }
                         else
                         {
-                            GameTable.Robot.ReachedWall = false;
-                            GameTable.Robot.X -= 1;
+                            GameTable.Robot.ReachedEnd = false;
+
+                            if (GameTable.HasWall(GameTable.Robot.X - 1, GameTable.Robot.Y))
+                            {
+                                if (GameTable.GetWall(GameTable.Robot.X - 1, GameTable.Robot.Y).Collapsed)
+                                {
+                                    GameTable.Robot.ReachedWall = false;
+                                    GameTable.Robot.X -= 1;
+                                }
+                                else
+                                {
+                                    GameTable.Robot.ReachedWall = true;
+                                    GameTable.GetWall(GameTable.Robot.X - 1, GameTable.Robot.Y).Collapsed = true;
+                                    GenerateRandomDirection();
+                                }
+                            }
+                            else
+                            {
+                                GameTable.Robot.ReachedWall = false;
+                                GameTable.Robot.X -= 1;
+                            }
                         }
                         break;
                     case Direction.Down:
-                        if (GameTable.Robot.X >= GameTable.Size - 1 || GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
+                        if (GameTable.Robot.X >= GameTable.Size - 1)
                         {
-                            GameTable.Robot.ReachedWall = true;
+                            GameTable.Robot.ReachedEnd = true;
                             GenerateRandomDirection();
-                            if (GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
-                            {
-                                GameTable.GetWall(GameTable.Robot.X + 1, GameTable.Robot.Y).Collapsed = true;
-                            }
                         }
                         else
                         {
-                            GameTable.Robot.ReachedWall = false;
-                            GameTable.Robot.X += 1;
+                            GameTable.Robot.ReachedEnd = false;
+
+                            if (GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
+                            {
+                                if (GameTable.GetWall(GameTable.Robot.X + 1, GameTable.Robot.Y).Collapsed)
+                                {
+                                    GameTable.Robot.ReachedWall = false;
+                                    GameTable.Robot.X += 1;
+                                }
+                                else
+                                {
+                                    GameTable.Robot.ReachedWall = true;
+                                    GameTable.GetWall(GameTable.Robot.X + 1, GameTable.Robot.Y).Collapsed = true;
+                                    GenerateRandomDirection();
+                                }
+                            }
+                            else
+                            {
+                                GameTable.Robot.ReachedWall = false;
+                                GameTable.Robot.X += 1;
+                            }
                         }
                         break;
                     case Direction.Left:
-                        if (GameTable.Robot.Y - 1 < 0 || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y - 1))
+                        if (GameTable.Robot.Y - 1 < 0)
                         {
-                            GameTable.Robot.ReachedWall = true;
+                            GameTable.Robot.ReachedEnd = true;
                             GenerateRandomDirection();
-                            if (GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y - 1))
-                            {
-                                GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y - 1).Collapsed = true;
-                            }
                         }
                         else
                         {
-                            GameTable.Robot.ReachedWall = false;
-                            GameTable.Robot.Y -= 1;
+                            GameTable.Robot.ReachedEnd = false;
+
+                            if (GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y - 1))
+                            {
+                                if (GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y - 1).Collapsed)
+                                {
+                                    GameTable.Robot.ReachedWall = false;
+                                    GameTable.Robot.Y -= 1;
+                                }
+                                else
+                                {
+                                    GameTable.Robot.ReachedWall = true;
+                                    GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y - 1).Collapsed = true;
+                                    GenerateRandomDirection();
+                                }
+                            }
+                            else
+                            {
+                                GameTable.Robot.ReachedWall = false;
+                                GameTable.Robot.Y -= 1;
+                            }
                         }
                         break;
                     case Direction.Right:
-                        if (GameTable.Robot.Y >= GameTable.Size - 1 || GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
+                        if (GameTable.Robot.Y >= GameTable.Size - 1)
                         {
-                            GameTable.Robot.ReachedWall = true;
+                            GameTable.Robot.ReachedEnd = true;
                             GenerateRandomDirection();
-                            if (GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
-                            {
-                                GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y + 1).Collapsed = true;
-                            }
                         }
                         else
                         {
-                            GameTable.Robot.ReachedWall = false;
-                            GameTable.Robot.Y += 1;
+                            GameTable.Robot.ReachedEnd = false;
+
+                            if (GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
+                            {
+                                if (GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y + 1).Collapsed)
+                                {
+                                    GameTable.Robot.ReachedWall = false;
+                                    GameTable.Robot.Y += 1;
+                                }
+                                else
+                                {
+                                    GameTable.Robot.ReachedWall = true;
+                                    GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y + 1).Collapsed = true;
+                                    GenerateRandomDirection();
+                                }
+                            }
+                            else
+                            {
+                                GameTable.Robot.ReachedWall = false;
+                                GameTable.Robot.Y += 1;
+                            }
                         }
                         break;
                 }
