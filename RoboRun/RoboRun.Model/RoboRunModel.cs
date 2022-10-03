@@ -126,6 +126,10 @@ namespace RoboRun.Model
                         {
                             GameTable.Robot.ReachedWall = true;
                             GenerateRandomDirection();
+                            if (GameTable.HasWall(GameTable.Robot.X - 1, GameTable.Robot.Y))
+                            {
+                                GameTable.GetWall(GameTable.Robot.X - 1, GameTable.Robot.Y).Collapsed = true;
+                            }
                         }
                         else
                         {
@@ -138,6 +142,10 @@ namespace RoboRun.Model
                         {
                             GameTable.Robot.ReachedWall = true;
                             GenerateRandomDirection();
+                            if (GameTable.HasWall(GameTable.Robot.X + 1, GameTable.Robot.Y))
+                            {
+                                GameTable.GetWall(GameTable.Robot.X + 1, GameTable.Robot.Y).Collapsed = true;
+                            }
                         }
                         else
                         {
@@ -150,6 +158,10 @@ namespace RoboRun.Model
                         {
                             GameTable.Robot.ReachedWall = true;
                             GenerateRandomDirection();
+                            if (GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y - 1))
+                            {
+                                GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y - 1).Collapsed = true;
+                            }
                         }
                         else
                         {
@@ -162,6 +174,10 @@ namespace RoboRun.Model
                         {
                             GameTable.Robot.ReachedWall = true;
                             GenerateRandomDirection();
+                            if (GameTable.HasWall(GameTable.Robot.X, GameTable.Robot.Y + 1))
+                            {
+                                GameTable.GetWall(GameTable.Robot.X, GameTable.Robot.Y + 1).Collapsed = true;
+                            }
                         }
                         else
                         {

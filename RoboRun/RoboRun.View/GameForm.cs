@@ -335,49 +335,32 @@ namespace RoboRun.View
                         {
                             _buttonGrid[i, j].Enabled = false;
                             _buttonGrid[i, j].BackgroundImage = View.Resource.robotFloor;
-                            _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                            _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                         }
                         else
                         {
-                            // TODO: Logic for collapsed wall
                             if (_model.GameTable.HasWall(i, j))
                             {
-                                if (_model.GameTable.Robot.ReachedWall)
+                                _buttonGrid[i, j].Enabled = false;
+                                if (_model.GameTable.GetWall(i, j).Collapsed)
                                 {
-                                    _buttonGrid[i, j].Enabled = false;
                                     _buttonGrid[i, j].BackgroundImage = View.Resource.wallCollapsed;
-                                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                                 }
                                 else
                                 {
-                                    _buttonGrid[i, j].Enabled = false;
                                     _buttonGrid[i, j].BackgroundImage = View.Resource.wall;
-                                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                                 }
                             }
                             else
                             {
-                                if (_model.GameTable.IsLocked(i, j))
-                                {
-                                    _buttonGrid[i, j].Enabled = false;
-                                    _buttonGrid[i, j].BackColor = Color.Gray;
-                                }
-                                else
-                                {
-                                    _buttonGrid[i, j].Enabled = true;
-                                    _buttonGrid[i, j].BackgroundImage = View.Resource.floor;
-                                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
-                                }
+                                _buttonGrid[i, j].Enabled = true;
+                                _buttonGrid[i, j].BackgroundImage = View.Resource.floor;
                             }
                         }
                     }
+                    _buttonGrid[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                    _buttonGrid[i, j].Size = _buttonGrid[i, j].BackgroundImage.Size;
                 }
             }
-
             _toolLabelGameTime.Text = TimeSpan.FromSeconds(_model.GameTime).ToString("g");
         }
 

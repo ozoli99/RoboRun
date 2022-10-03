@@ -86,6 +86,31 @@
         }
 
         /// <summary>
+        /// Get wall with given coordinates.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
+        /// <returns>Wall with given coordinate.</returns>
+        public Wall GetWall(int x, int y)
+        {
+            if (x == _fieldLocks.GetLength(0) / 2 && y == _fieldLocks.GetLength(1) / 2)
+                throw new ArgumentException("The given field is the Home field.");
+            if (x < 0 || x >= _fieldLocks.GetLength(0))
+                throw new ArgumentOutOfRangeException("x", "The X coordinate is out of range.");
+            if (y < 0 || y >= _fieldLocks.GetLength(1))
+                throw new ArgumentOutOfRangeException("y", "The Y coordinate is out of range.");
+
+            foreach (Wall wall in _walls)
+            {
+                if (wall.X == x && wall.Y == y)
+                {
+                    return wall;
+                }
+            }
+            throw new ArgumentException("There's no wall on the game field with these coordinates.");
+        }
+
+        /// <summary>
         /// Get that the given field is locked.
         /// </summary>
         /// <param name="x">Horizontal coordinate.</param>
