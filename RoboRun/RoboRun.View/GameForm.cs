@@ -3,15 +3,18 @@ using RoboRun.Persistence;
 
 namespace RoboRun.View
 {
+    /// <summary>
+    /// Type of game window.
+    /// </summary>
     public partial class GameForm : Form
     {
         #region Private fields
 
         private IRoboRunDataAccess _dataAccess; // persistence
         private RoboRunModel _model;    // game model
-        private Button[,] _buttonGrid;
-        private System.Windows.Forms.Timer _timer;
-        private System.Windows.Forms.Timer _robotTimer;
+        private Button[,] _buttonGrid;  // button grid
+        private System.Windows.Forms.Timer _timer;  // for timer measuring
+        private System.Windows.Forms.Timer _robotTimer; // for robot movement
 
         #endregion
 
@@ -34,21 +37,17 @@ namespace RoboRun.View
         /// </summary>
         private void GameForm_Load(object? sender, EventArgs e)
         {
-            // Instantiate persistence
             _dataAccess = new RoboRunFileDataAccess();
 
-            // Create model
             _model = new RoboRunModel(_dataAccess);
             _model.GameWin += new EventHandler<RoboRunEventArgs>(Game_GameWin);
             _model.GameTimeAdvanced += new EventHandler<RoboRunEventArgs>(Game_GameTimeAdvanced);
             _model.RobotMoved += new EventHandler(Game_RobotMoved);
 
-            // Create timer for game time
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 1000;
             _timer.Tick += new EventHandler(Timer_Tick);
 
-            // Create timer for robot movement
             _robotTimer = new System.Windows.Forms.Timer();
             _robotTimer.Interval = 150;
             _robotTimer.Tick += new EventHandler(RobotTimer_Tick);
@@ -216,8 +215,6 @@ namespace RoboRun.View
             }
         }
 
-        // TODO: Size handling gone wrong.
-
         /// <summary>
         /// Event handler of changing game table size to small in Settings menu.
         /// </summary>
@@ -277,16 +274,13 @@ namespace RoboRun.View
         /// </summary>
         private void NewGame()
         {
-            // Start new game
             _model.NewGame();
 
-            // Initialize gameTable and menus
             GenerateGameTable();
             SetupGameTable();
             SetupMenus();
             _menuFileSaveGame.Enabled = true;
 
-            // Setup window parameters
             this.Width = (_model.GameTable.Size * 64) + 26;
             this.Height = (_model.GameTable.Size * 64) + 110;
 

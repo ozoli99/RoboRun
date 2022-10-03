@@ -1,7 +1,15 @@
 ﻿namespace RoboRun.Persistence
 {
+    /// <summary>
+    /// RoboRun file handling type.
+    /// </summary>
     public class RoboRunFileDataAccess : IRoboRunDataAccess
     {
+        /// <summary>
+        /// Loading file.
+        /// </summary>
+        /// <param name="path">Path.</param>
+        /// <returns>Game table read from file.</returns>
         public async Task<RoboRunTable> LoadAsync(string path)
         {
             try
@@ -63,6 +71,12 @@
             }
         }
 
+        /// <summary>
+        /// Saving file.
+        /// </summary>
+        /// <param name="path">Path.</param>
+        /// <param name="gameTable">Game table for save.</param>
+        /// <param name="gameTime">Game time for save.</param>
         public async Task SaveAsync(string path, RoboRunTable gameTable, int gameTime)
         {
             try

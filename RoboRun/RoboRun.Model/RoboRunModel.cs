@@ -23,9 +23,9 @@ namespace RoboRun.Model
         #region Private fields
 
         private IRoboRunDataAccess _dataAccess; // persistence
-        private RoboRunTable _gameTable;
-        private GameTableSize _gameTableSize;
-        private int _gameTime;
+        private RoboRunTable _gameTable;    // game table
+        private GameTableSize _gameTableSize;   // game table size
+        private int _gameTime;  // game time
 
         #endregion
 
@@ -102,6 +102,9 @@ namespace RoboRun.Model
             GameTable.SetLock(x, y);
         }
 
+        /// <summary>
+        /// Increase game time.
+        /// </summary>
         public void AdvanceTime()
         {
             if (IsGameWin)
@@ -111,6 +114,9 @@ namespace RoboRun.Model
             GameTimeAdvanced?.Invoke(this, new RoboRunEventArgs(_gameTime));
         }
 
+        /// <summary>
+        /// Handle robot movement and wall collapsing.
+        /// </summary>
         public void MoveRobot()
         {
             if (GameTable.Robot.ReachedWall)
@@ -191,6 +197,10 @@ namespace RoboRun.Model
             RobotMoved?.Invoke(this, new EventArgs());
         }
 
+        /// <summary>
+        /// Loading game.
+        /// </summary>
+        /// <param name="path">Path.</param>
         public async Task LoadGameAsync(string path)
         {
             if (_dataAccess == null)
@@ -199,6 +209,10 @@ namespace RoboRun.Model
             _gameTable = await _dataAccess.LoadAsync(path);
         }
 
+        /// <summary>
+        /// Saving game.
+        /// </summary>
+        /// <param name="path">Path.</param>
         public async Task SaveGameAsync(string path)
         {
             if (_dataAccess == null)
@@ -211,6 +225,9 @@ namespace RoboRun.Model
 
         #region Private methods
 
+        /// <summary>
+        /// Generate random direction in case of the robot reach a wall.
+        /// </summary>
         private void GenerateRandomDirection()
         {
             Array values = Enum.GetValues(typeof(Direction));
@@ -224,6 +241,9 @@ namespace RoboRun.Model
             GameTable.Robot.ReachedWall = false;
         }
 
+        /// <summary>
+        /// Checks that the player won the game.
+        /// </summary>
         private void CheckGame()
         {
             if (GameTable.Robot.X == GameTable.Size / 2 && GameTable.Robot.Y == GameTable.Size / 2)

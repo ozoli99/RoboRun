@@ -132,6 +132,12 @@
             return (_robot.X == x && _robot.Y == y);
         }
 
+        /// <summary>
+        /// Get that the given field is the home field.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate.</param>
+        /// <param name="y">Vertical coordinate.</param>
+        /// <returns>The given field is the home field.</returns>
         public bool IsHome(int x, int y)
         {
             return (x == _fieldLocks.GetLength(0) / 2 && y ==  _fieldLocks.GetLength(1) / 2);
