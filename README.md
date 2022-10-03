@@ -121,6 +121,8 @@ illetve az értékek beállítását (**SetupGameTable**) külön metódusok vé
 - A játék időbeli kezelését egy időzítő végzi (**_timer**), ahogy robot mozgását is ez vezérli (**_robotTimer**).
 Ezeket mindig aktiváljuk a játék során, illetve inaktiváljuk, amennyiben bizonyos menüfunkciók futnak.
 
+![Class diagram](https://github.com/ozoli99/RoboRun/blob/main/Media/ClassDiagram.jpg)
+
 ## Tesztelés
 - A modell funkcionalitása egységtesztek segítségével lett ellenőrizve a **TestModel** osztályban.
 - Az alábbi tesztesetek kerültek megvalósításra:
