@@ -20,10 +20,10 @@ namespace RoboRunTest
             _mock.Setup(mock => mock.LoadAsync(It.IsAny<string>())).Returns(() => Task.FromResult(_mockedTable));
 
             _model = new RoboRunModel(_mock.Object);
-            _model.GameWin += new EventHandler<RoboRunEventArgs>(Model_GameWin);
-            _model.GameTimeAdvanced += new EventHandler<RoboRunEventArgs>(Model_GameTimeAdvanced);
-            _model.GameTimePaused += new EventHandler<RoboRunEventArgs>(Model_GameTimePaused);
-            _model.RobotMoved += new EventHandler(Model_RobotMoved);
+            //_model.GameWin += new EventHandler<RoboRunEventArgs>(Model_GameWin);
+            //_model.GameTimeAdvanced += new EventHandler<RoboRunEventArgs>(Model_GameTimeAdvanced);
+            //_model.GameTimePaused += new EventHandler<RoboRunEventArgs>(Model_GameTimePaused);
+            //_model.RobotMoved += new EventHandler(Model_RobotMoved);
         }
 
         #region Load
@@ -125,6 +125,15 @@ namespace RoboRunTest
                     }
                 }
             }
+        }
+
+        [TestMethod]
+        public void RoboRunModelStepTest()
+        {
+            _model.Step(2, 8);
+
+            Assert.AreEqual(1, _model.GameTable.Walls.Count);
+            Assert.AreEqual(true, _model.GameTable.IsLocked(2, 8));
         }
 
         #endregion
