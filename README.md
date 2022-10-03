@@ -68,3 +68,11 @@ A nyomógomb egérkattintás hatására lerak egy falat az adott területre. Fal
 pozíciójára nem lehet lerakni. Lent lévő fal pozíciójára később, esetleges ledőlés esetén sem lehet már új falat lerakni.
 - A játék automatikusan feldob egy dialógusablakot, amikor vége a játéknak (sikerült beterelni a robotot a pálya közepén
 található mágnes alá). Szintén dialógusablakkal végezzük el a mentést, illetve betöltést is, a fájlneveket a felhasználó adja meg.
+
+![Use case diagram](https://github.com/ozoli99/RoboRun/blob/main/Media/UseCaseDiagram.jpg)
+
+## Tervezés
+### Programszerkezet
+- A programot háromrétegű architektúrában valósítjuk meg. A megjelenítés a RoboRun.View, a modell a RoboRun.Model, 
+míg a perzisztencia a RoboRun.Persistence névtérben helyezkedik el.
+Továbbá a rétegeket külön projektként adjuk hozzá az újrafelhasználhatóság érdekében.
