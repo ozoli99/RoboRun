@@ -22,7 +22,7 @@
                     int gameTime = int.Parse(numbers[0]);
                     int tableSize = int.Parse(numbers[1]);
 
-                    RoboRunTable gameTable = new RoboRunTable(tableSize);
+                    RoboRunTable gameTable = new RoboRunTable(tableSize, 0, 0, Direction.Up);
 
                     for (int i = 0; i < tableSize; i++)
                     {

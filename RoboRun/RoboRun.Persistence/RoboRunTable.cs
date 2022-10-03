@@ -30,33 +30,16 @@
 
         #endregion
 
-        #region Constructors
-
-        /// <summary>
-        /// Instantiate RoboRunTable.
-        /// </summary>
-        public RoboRunTable() : this(11) { }
+        #region Constructor
 
         /// <summary>
         /// Instantiate RoboRunTable.
         /// </summary>
         /// <param name="tableSize">Size of game table.</param>
-        public RoboRunTable(int tableSize)
+        public RoboRunTable(int tableSize, int x, int y, Direction randomDirection)
         {
             if (tableSize < 0)
                 throw new ArgumentOutOfRangeException("The table size is less than 0.", "tableSize");
-
-            Random random = new Random();
-            int x, y;
-            x = random.Next(tableSize);
-            y = random.Next(tableSize);
-            while (x == tableSize / 2 && y == tableSize / 2)
-            {
-                x = random.Next(tableSize);
-                y = random.Next(tableSize);
-            }
-            Array values = Enum.GetValues(typeof(Direction));
-            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
 
             _robot = new Robot(x, y, randomDirection);
             _walls = new List<Wall>();

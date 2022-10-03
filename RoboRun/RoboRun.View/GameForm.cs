@@ -294,7 +294,19 @@ namespace RoboRun.View
         /// </summary>
         private void NewGame()
         {
-            _model.NewGame();
+            Random random = new Random();
+            int x, y;
+            x = random.Next(_model.GameTable.Size);
+            y = random.Next(_model.GameTable.Size);
+            while (x == _model.GameTable.Size / 2 && y == _model.GameTable.Size / 2)
+            {
+                x = random.Next(_model.GameTable.Size);
+                y = random.Next(_model.GameTable.Size);
+            }
+            Array values = Enum.GetValues(typeof(Direction));
+            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
+
+            _model.NewGame(x, y, randomDirection);
 
             GenerateGameTable();
             SetupGameTable();

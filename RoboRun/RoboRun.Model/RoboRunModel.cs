@@ -57,7 +57,20 @@ namespace RoboRun.Model
         {
             _dataAccess = dataAccess;
             _gameTableSize = GameTableSize.Medium;
-            _gameTable = new RoboRunTable(GameTableSizeMedium);
+
+            Random random = new Random();
+            int x, y;
+            x = random.Next(GameTableSizeMedium);
+            y = random.Next(GameTableSizeMedium);
+            while (x == GameTableSizeMedium / 2 && y == GameTableSizeMedium / 2)
+            {
+                x = random.Next(GameTableSizeMedium);
+                y = random.Next(GameTableSizeMedium);
+            }
+            Array values = Enum.GetValues(typeof(Direction));
+            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
+
+            _gameTable = new RoboRunTable(GameTableSizeMedium, x, y, randomDirection);
         }
 
         #endregion
@@ -67,20 +80,20 @@ namespace RoboRun.Model
         /// <summary>
         /// Start new game.
         /// </summary>
-        public void NewGame()
+        public void NewGame(int x, int y, Direction randomDirection)
         {
             _gameTime = 0;
 
             switch (_gameTableSize)
             {
                 case GameTableSize.Small:
-                    _gameTable = new RoboRunTable(GameTableSizeSmall);
+                    _gameTable = new RoboRunTable(GameTableSizeSmall, x, y, randomDirection);
                     break;
                 case GameTableSize.Medium:
-                    _gameTable = new RoboRunTable(GameTableSizeMedium);
+                    _gameTable = new RoboRunTable(GameTableSizeMedium, x, y, randomDirection);
                     break;
                 case GameTableSize.Big:
-                    _gameTable = new RoboRunTable(GameTableSizeBig);
+                    _gameTable = new RoboRunTable(GameTableSizeBig, x, y, randomDirection);
                     break;
             }
         }
