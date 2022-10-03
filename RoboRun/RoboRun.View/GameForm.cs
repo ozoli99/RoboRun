@@ -341,7 +341,14 @@ namespace RoboRun.View
                         if (_model.GameTable.IsRobot(i, j))
                         {
                             _buttonGrid[i, j].Enabled = false;
-                            _buttonGrid[i, j].BackgroundImage = View.Resource.robotFloor;
+                            if (_model.GameTable.GetWall(i, j).Collapsed)
+                            {
+                                _buttonGrid[i, j].BackgroundImage = View.Resource.wallCollapsedRobot;
+                            }
+                            else
+                            {
+                                _buttonGrid[i, j].BackgroundImage = View.Resource.robotFloor;
+                            }
                         }
                         else
                         {

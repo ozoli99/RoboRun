@@ -109,5 +109,15 @@ namespace RoboRun.View {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallCollapsedRobot {
+            get {
+                object obj = ResourceManager.GetObject("wallCollapsedRobot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
