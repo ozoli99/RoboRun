@@ -77,6 +77,7 @@ namespace RoboRun.View
 
             if (MessageBox.Show("You Won!" + Environment.NewLine + "Time: " + TimeSpan.FromSeconds(e.ElapsedTime).ToString("g"), "RoboRun", MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
             {
+                RemoveButtons();
                 NewGame();
             }
         }
@@ -126,6 +127,7 @@ namespace RoboRun.View
             _timer.Stop();
             _robotTimer.Stop();
 
+            RemoveButtons();
             NewGame();
         }
 
@@ -149,6 +151,7 @@ namespace RoboRun.View
                 {
                     MessageBox.Show("Error occurred during load!" + Environment.NewLine + "Wrong path or file format.", "RoboRun Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    RemoveButtons();
                     NewGame();
                 }
 
@@ -221,6 +224,7 @@ namespace RoboRun.View
         private void MenuGameSmall_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Small;
+            RemoveButtons();
             NewGame();
         }
 
@@ -230,6 +234,7 @@ namespace RoboRun.View
         private void MenuGameMedium_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Medium;
+            RemoveButtons();
             NewGame();
         }
 
@@ -239,6 +244,7 @@ namespace RoboRun.View
         private void MenuGameBig_Click(object? sender, EventArgs e)
         {
             _model.GameTableSize = GameTableSize.Big;
+            RemoveButtons();
             NewGame();
         }
 
@@ -271,8 +277,6 @@ namespace RoboRun.View
         /// </summary>
         private void NewGame()
         {
-            // TODO: Only timer start again on new game.
-
             // Start new game
             _model.NewGame();
 
@@ -288,6 +292,15 @@ namespace RoboRun.View
 
             _timer.Start();
             _robotTimer.Start();
+        }
+
+        private void RemoveButtons()
+        {
+            foreach (Button button in _buttonGrid)
+            {
+                this.Controls.Remove(button);
+                button.Dispose();
+            }
         }
 
         /// <summary>
