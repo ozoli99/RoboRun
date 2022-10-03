@@ -43,7 +43,7 @@
                     gameTable.Robot.X = int.Parse(robotParams[0]);
                     gameTable.Robot.Y = int.Parse(robotParams[1]);
                     gameTable.Robot.MovementDirection = (Direction)int.Parse(robotParams[2]);
-                    gameTable.Robot.ReachedWall = bool.Parse(robotParams[3]);
+                    gameTable.Robot.ReachedWall = Convert.ToBoolean(int.Parse(robotParams[3]));
 
                     line = await reader.ReadLineAsync();
                     numbers = line.Split(' ');
@@ -94,9 +94,9 @@
                         await writer.WriteLineAsync();
                     }
                     
-                    await writer.WriteLineAsync(gameTable.Robot.X + " " + gameTable.Robot.Y + " " + gameTable.Robot.MovementDirection + " " + (gameTable.Robot.ReachedWall ? "1" : "0"));
+                    await writer.WriteLineAsync(gameTable.Robot.X + " " + gameTable.Robot.Y + " " + (int)gameTable.Robot.MovementDirection + " " + (gameTable.Robot.ReachedWall ? "1" : "0"));
                     
-                    await writer.WriteLineAsync((char)gameTable.Walls.Count);
+                    await writer.WriteLineAsync(gameTable.Walls.Count + "");
                     foreach (Wall wall in gameTable.Walls)
                     {
                         await writer.WriteLineAsync(wall.X + " " + wall.Y + " " + wall.Collapsed);

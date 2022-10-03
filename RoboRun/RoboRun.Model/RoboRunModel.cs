@@ -203,6 +203,8 @@ namespace RoboRun.Model
         /// <param name="path">Path.</param>
         public async Task LoadGameAsync(string path)
         {
+            // TODO: Fix game loading
+
             if (_dataAccess == null)
                 throw new InvalidOperationException("No data access is provided.");
 

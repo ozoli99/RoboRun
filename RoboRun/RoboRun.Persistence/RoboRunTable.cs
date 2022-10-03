@@ -26,7 +26,7 @@
         /// <summary>
         /// Get walls.
         /// </summary>
-        public IList<Wall> Walls { get { return _walls.AsReadOnly(); } }
+        public List<Wall> Walls { get { return _walls; } }
 
         #endregion
 
