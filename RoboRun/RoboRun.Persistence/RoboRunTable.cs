@@ -9,7 +9,7 @@
 
         private Robot _robot;
         private List<Wall> _walls;
-        private bool[,] _fieldLocks;
+        private bool[,] _fieldLocks;     
 
         #endregion
 

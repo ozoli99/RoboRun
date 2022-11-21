@@ -189,6 +189,8 @@ namespace RoboRun.View
                     NewGame();
                 }
 
+                RemoveButtons();
+                GenerateGameTable();
                 SetupGameTable();
             }
 
@@ -311,10 +313,7 @@ namespace RoboRun.View
             GenerateGameTable();
             SetupGameTable();
             SetupMenus();
-            _menuFileSaveGame.Enabled = true;
-
-            this.Width = (_model.GameTable.Size * 64) + 26;
-            this.Height = (_model.GameTable.Size * 64) + 110;
+            _menuFileSaveGame.Enabled = true;       
 
             _timer.Start();
             _robotTimer.Start();
@@ -350,6 +349,8 @@ namespace RoboRun.View
                     Controls.Add(_buttonGrid[i, j]);
                 }
             }
+            this.Width = (_model.GameTable.Size * 64) + 26;
+            this.Height = (_model.GameTable.Size * 64) + 110;
         }
 
         /// <summary>
@@ -357,8 +358,8 @@ namespace RoboRun.View
         /// </summary>
         private void SetupGameTable()
         {
-            int homeCoordinate = _model.GameTable.Size / 2;
-            
+            int homeCoordinate = _model.GameTable.Size / 2;            
+
             _buttonGrid[homeCoordinate, homeCoordinate].Enabled = false;
             _buttonGrid[homeCoordinate, homeCoordinate].BackgroundImage = View.Resource.homeFloor;
             _buttonGrid[homeCoordinate, homeCoordinate].BackgroundImageLayout = ImageLayout.Stretch;

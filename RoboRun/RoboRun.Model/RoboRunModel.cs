@@ -5,21 +5,13 @@ namespace RoboRun.Model
     /// <summary>
     /// Enum type of game table size.
     /// </summary>
-    public enum GameTableSize { Small, Medium, Big }
+    public enum GameTableSize { Small = 7, Medium = 11, Big = 15 }
 
     /// <summary>
     /// Type of RoboRun game.
     /// </summary>
     public class RoboRunModel
     {
-        #region Difficulty constants
-
-        private const int GameTableSizeSmall = 7;
-        private const int GameTableSizeMedium = 11;
-        private const int GameTableSizeBig = 15;
-
-        #endregion
-
         #region Private fields
 
         private IRoboRunDataAccess _dataAccess; // persistence
@@ -60,17 +52,17 @@ namespace RoboRun.Model
 
             Random random = new Random();
             int x, y;
-            x = random.Next(GameTableSizeMedium);
-            y = random.Next(GameTableSizeMedium);
-            while (x == GameTableSizeMedium / 2 && y == GameTableSizeMedium / 2)
+            x = random.Next((int)_gameTableSize);
+            y = random.Next((int)_gameTableSize);
+            while (x == (int)_gameTableSize / 2 && y == (int)_gameTableSize / 2)
             {
-                x = random.Next(GameTableSizeMedium);
-                y = random.Next(GameTableSizeMedium);
+                x = random.Next((int)_gameTableSize);
+                y = random.Next((int)_gameTableSize);
             }
             Array values = Enum.GetValues(typeof(Direction));
             Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
 
-            _gameTable = new RoboRunTable(GameTableSizeMedium, x, y, randomDirection);
+            _gameTable = new RoboRunTable((int)_gameTableSize, x, y, randomDirection);
         }
 
         #endregion
@@ -83,19 +75,7 @@ namespace RoboRun.Model
         public void NewGame(int x, int y, Direction randomDirection)
         {
             _gameTime = 0;
-
-            switch (_gameTableSize)
-            {
-                case GameTableSize.Small:
-                    _gameTable = new RoboRunTable(GameTableSizeSmall, x, y, randomDirection);
-                    break;
-                case GameTableSize.Medium:
-                    _gameTable = new RoboRunTable(GameTableSizeMedium, x, y, randomDirection);
-                    break;
-                case GameTableSize.Big:
-                    _gameTable = new RoboRunTable(GameTableSizeBig, x, y, randomDirection);
-                    break;
-            }
+            _gameTable = new RoboRunTable((int)_gameTableSize, x, y, randomDirection);
         }
 
         /// <summary>
@@ -285,8 +265,6 @@ namespace RoboRun.Model
         /// <param name="path">Path.</param>
         public async Task LoadGameAsync(string path)
         {
-            // TODO: Fix game loading
-
             if (_dataAccess == null)
                 throw new InvalidOperationException("No data access is provided.");
 
